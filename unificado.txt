@@ -1,0 +1,840 @@
+// google-version/index.html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hosanna - Ministerio Musical</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="background-gradient"></div>
+    <header>
+        <div class="logo">Hosanna</div>
+        <nav>
+            <a href="#intro" class="nav-btn">Sobre Nosotros</a>
+            <button id="download-btn" class="nav-btn cta">Descargas</button>
+        </nav>
+    </header>
+
+    <div class="wrapper">
+        <main>
+            <!-- Contenedor para estrellas (zonas oscuras) -->
+            <div id="star-container"></div>
+            <!-- Contenedor para nubes (zona celeste) -->
+            <div id="cloud-layer"></div>
+
+            <!-- ======== SECCIÓN 1: INTRO ======== -->
+            <section id="intro">
+                <div class="cloud-curtain">
+                    <div class="cloud cloud-left"></div>
+                    <div class="cloud cloud-right"></div>
+                </div>
+                <div class="content-wrapper">
+                    <h1 class="title-main">Hosanna</h1>
+                    <h2 class="subtitle">¿Qué es y para qué existe?</h2>
+                    <p>
+                        Es un ministerio musical creado por jóvenes adventistas...
+                    </p>
+                </div>
+            </section>
+
+            <!-- ======== SECCIÓN 2: VISIÓN Y MISIÓN ======== -->
+            <section id="vision-mision">
+                <div class="cloud-curtain">
+                    <div class="cloud cloud-left"></div>
+                    <div class="cloud cloud-right"></div>
+                </div>
+                <div class="content-wrapper">
+                    <h2 class="subtitle">Visión</h2>
+                    <p>
+                        Jóvenes adventistas de Argentina y otros territorios...
+                    </p>
+                    <h2 class="subtitle">Misión</h2>
+                    <p>
+                        Ofrecer herramientas útiles y de calidad a través de redes...
+                    </p>
+                    <h2 class="subtitle">Objetivos</h2>
+                    <ul>
+                        <li>Crear un cancionero con letras y cifras de canciones cristianas populares.</li>
+                        <li>Producir tutoriales de interpretación en piano, guitarra y ukelele.</li>
+                        <li>Brindar materiales útiles para los jóvenes músicos a través de redes sociales.</li>
+                        <li>Desarrollar una aplicación móvil que nuclee todos los recursos.</li>
+                        <li>Apoyar programas presenciales o virtuales del ministerio joven.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ======== SECCIÓN 3: HISTORIA ======== -->
+            <section id="historia">
+                <div class="cloud-curtain">
+                    <div class="cloud cloud-left"></div>
+                    <div class="cloud cloud-right"></div>
+                </div>
+                <div class="content-wrapper">
+                    <h2 class="subtitle">¿Cómo surgió y qué objetivos se han cumplido?</h2>
+                    <p>
+                        El ministerio Hosanna surgió en el año 2018 entre un grupo...
+                    </p>
+                    <p>
+                        El cancionero fue preparado durante ese año y el siguiente...
+                    </p>
+                    <p>
+                        En el año 2020, en plena cuarentena, se lanzó el cancionero...
+                    </p>
+                    <p>
+                        Ese mismo año se comenzaron a grabar tutoriales con jóvenes voluntarios...
+                    </p>
+                    <p>
+                        También en 2021, el ministerio contó con el apoyo oficial...
+                    </p>
+                    <p>
+                        En 2022 se actualizaron las gráficas del ministerio...
+                    </p>
+                    <blockquote class="quote">
+                        "¡Gloria a Dios en las alturas, y en la tierra paz, buena voluntad para con los hombres!” Lucas
+                        2:14
+                    </blockquote>
+                    <blockquote class="quote">
+                        “Y la gente que iba delante y la que iba detrás aclamaba, diciendo: ¡Hosanna al Hijo de David!
+                        ¡Bendito el que viene en el nombre del Señor! ¡Hosanna en las alturas!” Mateo 21:9
+                    </blockquote>
+                </div>
+            </section>
+
+            <!-- ======== SECCIÓN 4: PRÓXIMOS OBJETIVOS ======== -->
+            <section id="proximos-objetivos">
+                <div class="cloud-curtain">
+                    <div class="cloud cloud-left"></div>
+                    <div class="cloud cloud-right"></div>
+                </div>
+                <div class="content-wrapper">
+                    <h2 class="subtitle">¿Cuáles son los próximos objetivos a alcanzar?</h2>
+                    <p>
+                        El ministerio Hosanna, a la fecha, se mantiene activo...
+                    </p>
+                    <p>
+                        También quisiéramos producir otro tipo de recursos como archivos...
+                    </p>
+                    <p>
+                        Pero nuestro deseo más grande y objetivo más importante...
+                    </p>
+                </div>
+            </section>
+
+            <!-- ======== SECCIÓN 5: COLABORAR ======== -->
+            <section id="colaborar">
+                <div class="cloud-curtain">
+                    <div class="cloud cloud-left"></div>
+                    <div class="cloud cloud-right"></div>
+                </div>
+                <div class="content-wrapper">
+                    <h2 class="subtitle">¿Te gustaría colaborar con el proyecto?</h2>
+                    <p>
+                        Para hacer realidad el deseo y la necesidad de lograr el desarrollo...
+                    </p>
+                    <div class="contact-links">
+                        <a href="mailto:tu-email@dominio.com" class="contact-icon" title="Correo">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                                <path
+                                    d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z" />
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/TUNUMERO" class="contact-icon" title="Whatsapp">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+                                <path
+                                    d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.8 0-67.6-9.5-97.8-26.7l-7.1-4.2-72.7 19.1 19.4-71.1-4.6-7.4c-18.7-29.9-28.7-65.1-28.7-101.3 0-96.5 78.7-175.2 175.2-175.2 46.2 0 89.8 18.1 123.4 51.7 33.7 33.7 51.7 77.3 51.7 123.4 0 96.5-78.7 175.2-175.2 175.2z" />
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/hosanna.cancionero" class="contact-icon" title="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+                                <path
+                                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9 26.3 26.2 58 34.4 93.9 36.2 37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                            </svg>
+                        </a>
+                    </div>
+                    <a href="URL_DE_TU_PAYPAL" class="donation-btn">Apoya con una donación en PayPal</a>
+                    <p class="final-words">Dios te bendiga, y gracias por tu interés en conocer más sobre el ministerio.
+                    </p>
+                    <h1 class="title-main final-logo">Hosanna</h1>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="modal-container">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <h2>Descargas</h2>
+            <p>Elige el recurso que deseas obtener.</p>
+            <div class="download-options">
+                <a href="assets/docs/cancionero-hosanna.pdf" download class="download-link">
+                    <h3>Descargar Cancionero (PDF)</h3>
+                    <p>La última versión de nuestro cancionero completo.</p>
+                </a>
+                <a href="#" class="download-link disabled">
+                    <h3>App para Android (Próximamente)</h3>
+                    <p>Accede a todos los recursos desde tu móvil.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+
+
+
+// google-version/script.js
+document.addEventListener('DOMContentLoaded', async () => {
+
+    // --- CORRECCIÓN DE RUTAS ---
+    const cloudSVGs = [
+        'assets/img/svg/cloud_rounded.svg',
+        'assets/img/svg/cloud_elongated.svg',
+        'assets/img/svg/cloud_nube1.svg',
+        'assets/img/svg/cloud_nube2.svg',
+        'assets/img/svg/cloud_nube3.svg',
+        'assets/img/svg/cloud_nube4.svg'
+    ];
+
+    // --- Precargamos el contenido de los archivos SVG ---
+    const loadedClouds = await Promise.all(
+        cloudSVGs.map(url => fetch(url).then(res => res.text()).catch(e => {
+            console.error('Error cargando SVG:', url, e);
+            // Fallback SVG simple
+            return '<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg"><ellipse cx="25" cy="35" rx="25" ry="15"/><ellipse cx="45" cy="25" rx="30" ry="20"/><ellipse cx="70" cy="35" rx="25" ry="15"/></svg>';
+        }))
+    );
+
+    // Variables para el parallax
+    let stars = [];
+    let clouds = [];
+
+    window.onload = function () {
+        createDynamicSky();
+        setupParallax();
+        window.addEventListener('resize', createDynamicSky);
+    };
+
+    function createDynamicSky() {
+        const starContainer = document.getElementById('star-container');
+        const cloudContainer = document.getElementById('cloud-layer');
+
+        if (!starContainer || !cloudContainer) return;
+
+        // Limpiar contenedores
+        starContainer.innerHTML = '';
+        cloudContainer.innerHTML = '';
+        stars = [];
+        clouds = [];
+
+        const NUM_STARS = 200;
+        const NUM_CLOUDS = 15;
+
+        // --- GENERADOR DE ESTRELLAS ---
+        for (let i = 0; i < NUM_STARS; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            
+            // Posición aleatoria en pantalla
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            
+            star.style.left = `${x}%`;
+            star.style.top = `${y}%`;
+            
+            // Tamaño aleatorio
+            const size = Math.random() * 3 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            
+            // Animación de parpadeo
+            star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            
+            starContainer.appendChild(star);
+            
+            // Guardamos referencia para parallax
+            stars.push({
+                element: star,
+                originalY: y,
+                speed: 0.2 // Velocidad de parallax para estrellas (más lento)
+            });
+        }
+
+        // --- GENERADOR DE NUBES ---
+        for (let i = 0; i < NUM_CLOUDS; i++) {
+            const cloud = document.createElement('div');
+            cloud.classList.add('parallax-cloud');
+            
+            // Posición aleatoria
+            const x = Math.random() * 120 - 10; // Permite que salgan un poco de los bordes
+            const y = Math.random() * 100;
+            
+            cloud.style.left = `${x}%`;
+            cloud.style.top = `${y}%`;
+            
+            // Escala aleatoria
+            const scale = Math.random() * 0.8 + 0.3;
+            cloud.style.transform = `scale(${scale})`;
+            
+            // Opacidad aleatoria
+            cloud.style.opacity = Math.random() * 0.4 + 0.2;
+            
+            // Ancho base
+            cloud.style.width = '100px';
+            
+            // Animación de deriva
+            cloud.style.animationDelay = `${Math.random() * 60}s`;
+            cloud.style.animationDuration = `${Math.random() * 40 + 60}s`;
+            
+            // SVG aleatorio
+            const randomCloudIndex = Math.floor(Math.random() * loadedClouds.length);
+            if (loadedClouds[randomCloudIndex]) {
+                cloud.innerHTML = loadedClouds[randomCloudIndex];
+            }
+            
+            cloudContainer.appendChild(cloud);
+            
+            // Guardamos referencia para parallax
+            clouds.push({
+                element: cloud,
+                originalY: y,
+                speed: 0.5 // Velocidad de parallax para nubes (más rápido que estrellas)
+            });
+        }
+    }
+
+    function setupParallax() {
+        const wrapper = document.querySelector('.wrapper');
+        if (!wrapper) return;
+
+        // Función para actualizar posiciones parallax
+        function updateParallax() {
+            const scrollTop = wrapper.scrollTop;
+            const scrollPercent = scrollTop / (wrapper.scrollHeight - wrapper.clientHeight);
+            
+            // Actualizar estrellas
+            stars.forEach(star => {
+                const moveY = scrollTop * star.speed;
+                const newY = star.originalY - (moveY / window.innerHeight * 100);
+                star.element.style.top = `${newY}%`;
+            });
+            
+            // Actualizar nubes
+            clouds.forEach(cloud => {
+                const moveY = scrollTop * cloud.speed;
+                const newY = cloud.originalY - (moveY / window.innerHeight * 100);
+                cloud.element.style.top = `${newY}%`;
+            });
+        }
+
+        // Evento de scroll para parallax
+        wrapper.addEventListener('scroll', updateParallax);
+        
+        // Llamar una vez para inicializar
+        updateParallax();
+    }
+
+    // --- LÓGICA PARA LA ANIMACIÓN DE NUBES CORTINA ---
+    const sections = document.querySelectorAll('section');
+    const observerOptions = { 
+        root: null, 
+        rootMargin: '0px', 
+        threshold: 0.4 
+    };
+    
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('section-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // --- LÓGICA PARA EL MODAL DE DESCARGAS ---
+    const downloadButton = document.getElementById('download-btn');
+    const modalContainer = document.getElementById('modal-container');
+    const closeModalButton = modalContainer?.querySelector('.close-modal');
+    
+    if (downloadButton && modalContainer) {
+        downloadButton.addEventListener('click', () => {
+            modalContainer.classList.add('visible');
+        });
+        
+        if (closeModalButton) {
+            closeModalButton.addEventListener('click', () => {
+                modalContainer.classList.remove('visible');
+            });
+        }
+        
+        modalContainer.addEventListener('click', (e) => {
+            if (e.target === modalContainer) {
+                modalContainer.classList.remove('visible');
+            }
+        });
+    }
+});
+
+
+
+// google-version/style.css
+/* ======== FUENTES PERSONALIZADAS Y VARIABLES DE COLOR ======== */
+@font-face {
+    font-family: 'Blastimo';
+    src: url('assets/fonts/Blastimo.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Sukhumvit-text';
+    src: url('assets/fonts/Sukhumvit-text.ttf') format('truetype');
+}
+
+:root {
+    /* Colores para el degradado del cielo */
+    --cielo-1: rgb(3, 4, 31);
+    --cielo-2: rgb(41, 40, 62);
+    --cielo-3: rgb(168, 159, 168);
+    --cielo-4: rgb(234, 237, 241);
+    --cielo-5: rgb(230, 244, 249);
+
+    --color-morado-oscuro: #2a2641;
+    --color-morado-claro: #6750a4;
+    --color-rojo-cta: #ff4c4c;
+    --color-blanco: #ffffff;
+    --color-gris-claro: rgba(255, 255, 255, 0.85);
+
+    --font-title: 'Blastimo', cursive;
+    --font-body: 'Sukhumvit-text', sans-serif;
+}
+
+/* ======== ESTILOS GENERALES ======== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    overflow: hidden;
+    height: 100%;
+    background-color: var(--cielo-1);
+    font-family: var(--font-body);
+    color: var(--color-blanco);
+    mix-blend-mode:hard-light;
+}
+
+/* ======== CABECERA FIJA ======== */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(25, 22, 38, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+/* ======== CONTENEDOR DE PARALLAX Y SCROLL ======== */
+.wrapper {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;    
+    /* Removemos perspective y transform-style - usaremos otro método */
+}
+
+/* ======== CAPAS DE PARALLAX (Estrellas y Nubes) ======== */
+#star-container,
+#cloud-layer {
+    position: fixed; /* CAMBIO: fixed en lugar de absolute */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* CAMBIO: altura fija de viewport */
+    pointer-events: none;
+}
+
+#star-container {
+    z-index: 1; /* CAMBIO: z-index positivo pero bajo */
+}
+
+#cloud-layer {
+    z-index: 2; /* CAMBIO: z-index mayor que estrellas */
+}
+
+.star {
+    position: absolute;
+    background-color: var(--color-blanco);
+    border-radius: 50%;
+    animation: twinkle linear infinite;
+    mix-blend-mode:hard-light;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ======== NUBES PARALLAX REFINADAS ======== */
+.parallax-cloud {
+    position: absolute;
+    opacity: 0.6; /* CAMBIO: Menos opacidad para que no compitan con el contenido */
+    line-height: 0;
+    animation: drift 60s linear infinite;
+}
+
+.parallax-cloud svg {
+    width: 100%;
+    height: auto;
+    fill: rgba(255, 255, 255, 0.3); /* CAMBIO: Color más sutil */
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+@keyframes drift {
+    from {
+        transform: translateX(-100px);
+    }
+    to {
+        transform: translateX(100px);
+    }
+}
+
+/* ======== CONTENIDO PRINCIPAL (main) ======== */
+main {
+    position: relative;
+    z-index: 10; /* CAMBIO: z-index alto para estar sobre el parallax */
+    
+    /* El fondo degradado se queda aquí */
+    background: linear-gradient(to bottom,
+            var(--cielo-1) 0%,
+            var(--cielo-2) 15%,
+            var(--cielo-3) 35%,
+            var(--cielo-4) 45%,
+            var(--cielo-5) 50%,
+            var(--cielo-4) 55%,
+            var(--cielo-3) 65%,
+            var(--cielo-2) 85%,
+            var(--cielo-1) 100%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    
+    /* CAMBIO: Hacemos el fondo semi-transparente para ver las capas de parallax */
+    background-blend-mode: multiply;
+    mix-blend-mode: normal;
+}
+
+/* CAMBIO: Agregamos un overlay semi-transparente al main para mejor legibilidad */
+main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            rgba(3, 4, 31, 0.7) 0%,
+            rgba(41, 40, 62, 0.6) 15%,
+            rgba(168, 159, 168, 0.4) 35%,
+            rgba(234, 237, 241, 0.3) 45%,
+            rgba(230, 244, 249, 0.3) 50%,
+            rgba(234, 237, 241, 0.3) 55%,
+            rgba(168, 159, 168, 0.4) 65%,
+            rgba(41, 40, 62, 0.6) 85%,
+            rgba(3, 4, 31, 0.7) 100%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Las secciones de contenido van DENTRO de main y tienen mayor z-index */
+section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem 4rem;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.content-wrapper {
+    max-width: 800px;
+    text-align: center;
+    position: relative;
+    z-index: 2; /* CAMBIO: Aseguramos que el contenido esté por encima de todo */
+}
+
+.logo {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    color: var(--color-blanco);
+}
+
+nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-btn {
+    font-family: var(--font-body);
+    text-decoration: none;
+    color: var(--color-gris-claro);
+    background: transparent;
+    border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.nav-btn:hover {
+    color: var(--color-blanco);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-btn.cta {
+    background-color: var(--color-rojo-cta);
+    color: var(--color-blanco);
+    font-weight: bold;
+    border-color: var(--color-rojo-cta);
+    box-shadow: 0 0 15px rgba(255, 76, 76, 0.5);
+}
+
+.nav-btn.cta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 76, 76, 0.8);
+}
+
+.title-main {
+    font-family: var(--font-title);
+    font-size: clamp(4rem, 15vw, 9rem);
+    font-weight: 50;
+    color: var(--color-blanco);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* CAMBIO: Sombra para mejor legibilidad */
+}
+
+.subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    color: var(--color-blanco);
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* CAMBIO: Sombra para mejor legibilidad */
+}
+
+p,
+li {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-gris-claro);
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* CAMBIO: Sombra para mejor legibilidad */
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.quote {
+    font-style: italic;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-left: 3px solid var(--color-rojo-cta);
+    background: rgba(0, 0, 0, 0.4); /* CAMBIO: Fondo más opaco */
+    border-radius: 5px; /* CAMBIO: Bordes redondeados */
+}
+
+.cloud-curtain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.cloud {
+    position: absolute;
+    top: 0;
+    width: 55%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.5s ease;
+}
+
+.cloud-left {
+    left: 0;
+    background-image: url('assets/img/nube_01.svg');
+    background-position: left center;
+}
+
+.cloud-right {
+    right: 0;
+    background-image: url('assets/img/nube_02.svg');
+    background-position: right center;
+}
+
+.section-visible .cloud-left {
+    transform: translateX(-100%);
+    opacity: 0.2;
+}
+
+.section-visible .cloud-right {
+    transform: translateX(100%);
+    opacity: 0.2;
+}
+
+.contact-links {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.contact-icon {
+    text-decoration: none;
+    color: var(--color-gris-claro);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.contact-icon:hover {
+    transform: scale(1.2);
+    color: var(--color-blanco);
+}
+
+.contact-icon svg {
+    width: 36px;
+    height: 36px;
+}
+
+#modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+#modal-container.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background: var(--color-morado-oscuro);
+    padding: 2rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    border: 1px solid var(--color-morado-claro);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+#modal-container.visible .modal-content {
+    transform: scale(1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    color: var(--color-gris-claro);
+    cursor: pointer;
+}
+
+.download-options {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.download-link {
+    background: rgba(103, 80, 164, 0.2);
+    border: 1px solid var(--color-morado-claro);
+    padding: 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--color-blanco);
+    transition: background 0.3s ease;
+}
+
+.download-link:hover {
+    background: var(--color-morado-claro);
+}
+
+.download-link.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.download-link.disabled:hover {
+    background: rgba(103, 80, 164, 0.2);
+}
+
+.donation-btn {
+    display: inline-block;
+    background-color: var(--color-morado-claro);
+    color: var(--color-blanco);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.donation-btn:hover {
+    background-color: #584195;
+    transform: scale(1.05);
+}
+
+.final-words {
+    font-size: 0.9rem;
+}
+
+.final-logo {
+    font-size: 4rem;
+    margin-top: 1rem;
+}
+
+
+
