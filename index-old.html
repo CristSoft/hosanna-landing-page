@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cancionero Hosanna</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <!-- ============ Comienzo del Estilo CSS =========== -->
     <style>
         /* ======== FUENTES PERSONALIZADAS Y VARIABLES DE COLOR ======== */
         @font-face {
@@ -20,11 +22,12 @@
         }
 
         :root {
-            --cielo-1: rgba(3, 4, 31, 0);
-            --cielo-2: rgba(41, 40, 62, 0.25);
-            --cielo-3: rgba(168, 159, 168, 0.5);
-            --cielo-4: rgba(234, 237, 241, 0.75);
-            --cielo-5: rgba(230, 244, 249, 0.9);
+            /* Colores para el degradado del cielo */
+            --cielo-1: rgba(3, 4, 310, 0);
+            --cielo-2: rgba(41, 40, 620, 0.25);
+            --cielo-3: rgba(168, 159, 1680, 0.5);
+            --cielo-4: rgba(234, 237, 2410, 0.75);
+            --cielo-5: rgba(230, 244, 2490, 0.9);
 
             --color-morado-oscuro: #2a2641;
             --color-morado-claro: #6750a4;
@@ -58,8 +61,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000;
-            /* CAMBIO: Un z-index alto para que esté siempre visible */
+            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -69,42 +71,45 @@
         }
 
         /* ======== CONTENEDOR DE PARALLAX Y SCROLL ======== */
-        /* CAMBIO: Este es el núcleo de la optimización del parallax */
         .wrapper {
             height: 100vh;
             overflow-x: hidden;
             overflow-y: auto;
-            perspective: 1px;
-            /* Activa la perspectiva para el parallax */
-            transform-style: preserve-3d;
-            /* Permite que los hijos se muevan en el espacio 3D */
             position: relative;
+            /* mix-blend-mode:hard-light; */
+            /* opacity: 0.1; */
         }
 
         /* ======== CAPAS DE PARALLAX (Estrellas y Nubes) ======== */
-        /* CAMBIO: Se posicionan de forma absoluta y se mueven en Z */
         #star-container,
         #cloud-layer {
-            position: absolute;
+            position: fixed;
+            /* CAMBIO: fixed en lugar de absolute */
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
+            width: 100vw;
+            height: 400vh;
+            /* CAMBIO: altura fija de viewport */
             pointer-events: none;
-        }
-
-        #star-container {
-            z-index: 1;
-            /* Mueve las estrellas muy lejos para que se muevan muy lento */
-            transform: translateZ(-2px) scale(3);
         }
 
         #cloud-layer {
             z-index: 2;
-            /* Mueve las nubes un poco más cerca que las estrellas */
-            transform: translateZ(-1px) scale(2);
+            top: calc(200vh / 2);
+            height: 100vh;
+
+            /* CAMBIO: z-index mayor que estrellas */
         }
 
+        #star-container {
+            z-index: 1;
+            /* CAMBIO: z-index positivo pero bajo */
+        }
+
+        #cloud-layer {
+            z-index: 2;
+            /* CAMBIO: z-index mayor que estrellas */
+        }
 
         .star {
             position: absolute;
@@ -126,51 +131,41 @@
             }
         }
 
+        /* ======== NUBES PARALLAX REFINADAS ======== */
         .parallax-cloud {
             position: absolute;
             opacity: 0.6;
-            /* Dejaremos esta opacidad base */
+            /* CAMBIO: Menos opacidad para que no compitan con el contenido */
             line-height: 0;
             animation: drift 60s linear infinite;
-            filter: blur(5px);
         }
 
         .parallax-cloud svg {
             width: 100%;
             height: auto;
             fill: rgba(255, 255, 255, 0.3);
+            /* CAMBIO: Color más sutil */
             mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
             -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
         }
 
         @keyframes drift {
-            0% {
-                transform: translateX(-150%);
-                opacity: 0;
+            from {
+                transform: translateX(-100px);
             }
 
-            10% {
-                opacity: 0.6;
-            }
-
-            /* CAMBIO: El fade-out empieza antes */
-            80% {
-                opacity: 0.6;
-            }
-
-            100% {
-                transform: translateX(110vw);
-                opacity: 0;
+            to {
+                transform: translateX(100px);
             }
         }
 
         /* ======== CONTENIDO PRINCIPAL (main) ======== */
-        /* CAMBIO: El main ahora está en el plano 0 del parallax */
         main {
             position: relative;
             z-index: 10;
-            transform: translateZ(0);
-            /* Lo mantiene en el plano principal */
+            /* CAMBIO: z-index alto para estar sobre el parallax */
+
+            /* El fondo degradado se queda aquí */
             background: linear-gradient(to bottom,
                     var(--cielo-1) 0%,
                     var(--cielo-2) 15%,
@@ -181,9 +176,37 @@
                     var(--cielo-3) 65%,
                     var(--cielo-2) 85%,
                     var(--cielo-1) 100%);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+
+            /* CAMBIO: Hacemos el fondo semi-transparente para ver las capas de parallax */
+            background-blend-mode: multiply;
+            mix-blend-mode: normal;
         }
 
-        /* Las secciones de contenido van DENTRO de main */
+        /* CAMBIO: Agregamos un overlay semi-transparente al main para mejor legibilidad */
+        main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom,
+                    rgba(3, 4, 31, 0.7) 0%,
+                    rgba(41, 40, 62, 0.6) 15%,
+                    rgba(168, 159, 168, 0.4) 35%,
+                    rgba(234, 237, 241, 0.3) 45%,
+                    rgba(230, 244, 249, 0.3) 50%,
+                    rgba(234, 237, 241, 0.3) 55%,
+                    rgba(168, 159, 168, 0.4) 65%,
+                    rgba(41, 40, 62, 0.6) 85%,
+                    rgba(3, 4, 31, 0.7) 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Las secciones de contenido van DENTRO de main y tienen mayor z-index */
         section {
             position: relative;
             min-height: 100vh;
@@ -192,20 +215,7 @@
             justify-content: center;
             padding: 6rem 2rem 4rem;
             overflow: hidden;
-
-            /* --- NUEVA LÓGICA DE BLUR --- */
-            /* 1. Por defecto, cada sección está desenfocada. */
-            filter: blur(20px);
-            /* 2. La escalamos un poco para que los bordes borrosos no se vean. */
-            transform: scale(1.1);
-            /* 3. Definimos la transición suave para el filtro y la transformación. */
-            transition: filter 0.5s ease-in-out, transform 0.5s ease-in-out;
-        }
-
-        /* Cuando la sección se hace visible, quitamos el blur y la escala. */
-        .section-visible {
-            filter: blur(0);
-            transform: scale(1);
+            z-index: 1;
         }
 
         .content-wrapper {
@@ -213,6 +223,8 @@
             text-align: center;
             position: relative;
             z-index: 2;
+            /* CAMBIO: Aseguramos que el contenido esté por encima de todo */
+
         }
 
         .texto {
@@ -222,7 +234,6 @@
             border-radius: 15px;
         }
 
-        /* Resto de estilos (sin cambios) */
         .logo {
             font-family: var(--font-title);
             font-size: 2.5rem;
@@ -272,6 +283,7 @@
             color: var(--color-blanco);
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            /* CAMBIO: Sombra para mejor legibilidad */
         }
 
         .subtitle {
@@ -282,6 +294,7 @@
             margin-top: 2rem;
             margin-bottom: 1rem;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            /* CAMBIO: Sombra para mejor legibilidad */
         }
 
         p,
@@ -291,6 +304,7 @@
             color: var(--color-gris-claro);
             margin-bottom: 1rem;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            /* CAMBIO: Sombra para mejor legibilidad */
         }
 
         ul {
@@ -304,10 +318,52 @@
             padding: 1rem;
             border-left: 3px solid var(--color-rojo-cta);
             background: rgba(0, 0, 0, 0.4);
+            /* CAMBIO: Fondo más opaco */
             border-radius: 5px;
+            /* CAMBIO: Bordes redondeados */
         }
 
-        
+        .cloud-curtain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .cloud {
+            position: absolute;
+            top: 0;
+            width: 55%;
+            height: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.5s ease;
+        }
+
+        .cloud-left {
+            left: 0;
+            background-image: url('assets/img/svg/cloud_rounded.svg');
+            background-position: left center;
+        }
+
+        .cloud-right {
+            right: 0;
+            background-image: url('assets/img/svg/cloud_rounded.svg');
+            background-position: right center;
+        }
+
+        .section-visible .cloud-left {
+            transform: translateX(-100%);
+            opacity: 0.2;
+        }
+
+        .section-visible .cloud-right {
+            transform: translateX(100%);
+            opacity: 0.2;
+        }
 
         .contact-links {
             margin: 2rem 0;
@@ -435,9 +491,11 @@
             margin-top: 1rem;
         }
     </style>
+    <!--========== FIN del Estilo CSS ==============-->
 </head>
 
 <body>
+    <div id="background-gradient"></div>
     <header>
         <div class="logo">Hosanna</div>
         <nav>
@@ -446,16 +504,19 @@
         </nav>
     </header>
 
-    <!-- El .wrapper ahora controla el parallax -->
     <div class="wrapper">
-        <!-- Las capas de parallax son hermanas del main -->
-        <div id="star-container"></div>
-        <div id="cloud-layer"></div>
-
-        <!-- El contenido principal va después -->
         <main>
+            <!-- Contenedor para estrellas (zonas oscuras) -->
+            <div id="star-container"></div>
+            <!-- Contenedor para nubes (zona celeste) -->
+            <div id="cloud-layer"></div>
+
             <!-- ======== SECCIÓN 1: INTRO ======== -->
             <section id="intro">
+                <div class="cloud-curtain">
+                    <div class="cloud cloud-left"></div>
+                    <div class="cloud cloud-right"></div>
+                </div>
                 <div class="content-wrapper">
                     <h1 class="title-main">Hosanna</h1>
                     <h2 class="subtitle">¿Qué es y para qué existe?</h2>
@@ -466,7 +527,11 @@
             </section>
 
             <!-- ======== SECCIÓN 2: VISIÓN Y MISIÓN ======== -->
-            <section id="vision-mision">                
+            <section id="vision-mision">
+                <div class="cloud-curtain">
+                    <div class="cloud cloud-left"></div>
+                    <div class="cloud cloud-right"></div>
+                </div>
                 <div class="content-wrapper texto">
                     <h2 class="subtitle">Visión</h2>
                     <p>
@@ -488,7 +553,11 @@
             </section>
 
             <!-- ======== SECCIÓN 3: HISTORIA ======== -->
-            <section id="historia">                
+            <section id="historia">
+                <div class="cloud-curtain">
+                    <div class="cloud cloud-left"></div>
+                    <div class="cloud cloud-right"></div>
+                </div>
                 <div class="content-wrapper texto">
                     <h2 class="subtitle">¿Cómo surgió y qué objetivos se han cumplido?</h2>
                     <p>
@@ -522,6 +591,10 @@
 
             <!-- ======== SECCIÓN 4: PRÓXIMOS OBJETIVOS ======== -->
             <section id="proximos-objetivos">
+                <div class="cloud-curtain">
+                    <div class="cloud cloud-left"></div>
+                    <div class="cloud cloud-right"></div>
+                </div>
                 <div class="content-wrapper texto">
                     <h2 class="subtitle">¿Cuáles son los próximos objetivos a alcanzar?</h2>
                     <p>
@@ -538,6 +611,10 @@
 
             <!-- ======== SECCIÓN 5: COLABORAR ======== -->
             <section id="colaborar">
+                <div class="cloud-curtain">
+                    <div class="cloud cloud-left"></div>
+                    <div class="cloud cloud-right"></div>
+                </div>
                 <div class="content-wrapper texto">
                     <h2 class="subtitle">¿Te gustaría colaborar con el proyecto?</h2>
                     <p>
@@ -572,7 +649,6 @@
         </main>
     </div>
 
-    <!-- Contenedor del Modal (sin cambios) -->
     <div id="modal-container">
         <div class="modal-content">
             <span class="close-modal">×</span>
@@ -591,138 +667,207 @@
         </div>
     </div>
 
-    <!-- Tu JS irá aquí -->
+    <!-- <script src="script.js"></script> -->
+    <!-- ========== Comienzo del Script ============= -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // --- Contenido de SVG para las nubes parallax ---
+            // --- PASO 1: Define el contenido de tus SVG directamente aquí ---
+            // Pega el contenido de tus archivos SVG dentro de las comillas.
+            // He puesto un SVG de ejemplo. Reemplázalo con los tuyos.
             const loadedClouds = [
-                `<svg viewBox="0 -10 120 80" xmlns="http://www.w3.org/2000/svg"><path d="M110.7,35.3c-0.1-13.4-10.9-24.2-24.3-24.2c-4.9,0-9.4,1.5-13.2,4c-4.4-10.5-15.1-17.9-27.5-17.9c-16.5,0-29.8,13.4-29.8,29.8c0,2.1,0.2,4.2,0.6,6.2C7.3,34.8,0,42.9,0,52.8C0,62.3,7.7,70,17.2,70h86.2c9.5,0,17.2-7.7,17.2-17.2C120.5,45.8,116.5,38.6,110.7,35.3z" fill="#FFFFFF"/></svg>`,
+                // assets/img/svg/cloud_rounded.svg
+                `<svg viewBox="0 -10 120 80" xmlns="http://www.w3.org/2000/svg">
+  <path d="M110.7,35.3c-0.1-13.4-10.9-24.2-24.3-24.2c-4.9,0-9.4,1.5-13.2,4c-4.4-10.5-15.1-17.9-27.5-17.9c-16.5,0-29.8,13.4-29.8,29.8c0,2.1,0.2,4.2,0.6,6.2C7.3,34.8,0,42.9,0,52.8C0,62.3,7.7,70,17.2,70h86.2c9.5,0,17.2-7.7,17.2-17.2C120.5,45.8,116.5,38.6,110.7,35.3z" fill="#FFFFFF"/>
+</svg>`,
+                // assets/img/svg/cloud_elongated.svg
                 `<svg viewBox="0 0 150 50" xmlns="http://www.w3.org/2000/svg"><path d="M142.2,20.3c-0.1-8.9-7.3-16.1-16.2-16.1c-3.3,0-6.3,1-8.8,2.7c-2.9-7-10.1-11.9-18.3-11.9c-11,0-19.9,8.9-19.9,19.9c0,1.4,0.1,2.8,0.4,4.1C69.7,20.1,60.2,28.6,60.2,35.2c0,6.2,5.1,11.2,11.4,11.2h60.1c6.3,0,11.4-5,11.4-11.2C143.2,30.5,142.8,25.7,142.2,20.3z"/></svg>`,
-                `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g1"><stop offset="0%" stop-color="rgba(255,255,255,0.5)"/><stop offset="100%" stop-color="rgba(173,216,230,0.5)"/></linearGradient></defs><path fill="url(#g1)" d="M0,42 Q5,45 10,42 Q10,36 20,39 Q30,18 45,24 Q60,15 75,24 Q85,30 100,42 Q98,51 85,54 Q75,60 60,60 Q40,60 20,57 Q5,54 0,48 Z" /></svg>`,
-                `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g2"><stop offset="0%" stop-color="rgba(255,255,255,0.5)"/><stop offset="100%" stop-color="rgba(173,216,230,0.5)"/></linearGradient></defs><path fill="url(#g2)" d="M10,60 Q5,60 10,57 Q20,36 30,39 Q40,18 60,24 Q75,27 85,39 Q100,51 95,60 L0,60 Z" /></svg>`,
-                `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g3"><stop offset="0%" stop-color="rgba(255,255,255,0.5)"/><stop offset="100%" stop-color="rgba(173,216,230,0.5)"/></linearGradient></defs><path fill="url(#g3)" d="M10,60 Q5,60 10,54 Q20,30 30,36 Q40,24 50,30 Q60,18 70,24 Q80,30 90,36 Q100,48 95,60 L0,60 Z" /></svg>`,
-                `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g4"><stop offset="0%" stop-color="rgba(255,255,255,0.5)"/><stop offset="100%" stop-color="rgba(173,216,230,0.5)"/></linearGradient></defs><path fill="url(#g4)" d="M10,60 Q5,60 15,54 Q20,24 35,30 Q50,12 65,27 Q80,36 85,42 Q100,51 95,60 L0,60 Z" /></svg>`
+                // Pega el contenido de cloud_nube1.svg aquí
+                `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="cloudGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0.5" />
+  <stop offset="100%" style="stop-color:rgb(173,216,230);stop-opacity:0.5" />
+</linearGradient>
+</defs>
+<path fill="url(#cloudGradient)" d="M0,42 Q5,45 10,42 Q10,36 20,39 Q30,18 45,24 Q60,15 75,24 Q85,30 100,42 Q98,51 85,54 Q75,60 60,60 Q40,60 20,57 Q5,54 0,48 Z" />
+</svg>`,
+                // Pega el contenido de cloud_nube2.svg aquí
+                `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="cloudGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0.5" />
+  <stop offset="100%" style="stop-color:rgb(173,216,230);stop-opacity:0.5" />
+</linearGradient>
+</defs>
+<path fill="url(#cloudGradient)" d="M10,60 Q5,60 10,57 Q20,36 30,39 Q40,18 60,24 Q75,27 85,39 Q100,51 95,60 L0,60 Z" />
+</svg>`,
+                // Pega el contenido de cloud_nube3.svg aquí
+                `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="cloudGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0.5" />
+  <stop offset="100%" style="stop-color:rgb(173,216,230);stop-opacity:0.5" />
+</linearGradient>
+</defs>
+<path fill="url(#cloudGradient)" d="M10,60 Q5,60 10,54 Q20,30 30,36 Q40,24 50,30 Q60,18 70,24 Q80,30 90,36 Q100,48 95,60 L0,60 Z" />
+</svg>`,
+                // Pega el contenido de cloud_nube4.svg aquí
+                `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="cloudGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0.5" />
+  <stop offset="100%" style="stop-color:rgb(173,216,230);stop-opacity:0.5" />
+</linearGradient>
+</defs>
+<path fill="url(#cloudGradient)" d="M10,60 Q5,60 15,54 Q20,24 35,30 Q50,12 65,27 Q80,36 85,42 Q100,51 95,60 L0,60 Z" />
+</svg>`
             ];
 
-            // Función para generar los elementos del cielo dinámicamente
-            // Función para generar los elementos del cielo dinámicamente
+            // --- PASO 2: El bloque `fetch` y `Promise.all` se elimina por completo. ---
+
+            // Variables para el parallax
+            let stars = [];
+            let clouds = [];
+
+            // --- PASO 3: Reestructurar el inicio ---
+            // Ya no usamos window.onload, todo se ejecuta secuencialmente después de que el DOM esté listo.
+            createDynamicSky();
+            setupParallax();
+            window.addEventListener('resize', createDynamicSky);
+
+
             function createDynamicSky() {
                 const starContainer = document.getElementById('star-container');
                 const cloudContainer = document.getElementById('cloud-layer');
-                const mainElement = document.querySelector('main');
 
-                if (!starContainer || !cloudContainer || !mainElement) return;
+                if (!starContainer || !cloudContainer) return;
 
-                // Medimos la altura total del contenido que se puede desplazar.
-                const totalPageHeight = mainElement.scrollHeight;
-
+                // Limpiar contenedores
                 starContainer.innerHTML = '';
                 cloudContainer.innerHTML = '';
+                stars = [];
+                clouds = [];
 
-                // CAMBIO: Aumentamos el número de estrellas para una mejor densidad en toda la página.
-                const NUM_STARS = 500;
-                const NUM_CLOUDS = 25;
+                const NUM_STARS = 200;
+                const NUM_CLOUDS = 15;
 
-                // Generar Estrellas (con la nueva lógica vertical)
+                // --- GENERADOR DE ESTRELLAS (sin cambios) ---
                 for (let i = 0; i < NUM_STARS; i++) {
                     const star = document.createElement('div');
                     star.classList.add('star');
-
-                    // La posición horizontal se mantiene.
-                    star.style.left = `${Math.random() * 100}%`;
-
-                    // --- CAMBIO: POSICIÓN VERTICAL DE LAS ESTRELLAS ---
-                    // Usamos la altura total de la página en píxeles, igual que con las nubes.
-                    const topPosition = Math.random() * totalPageHeight;
-                    star.style.top = `${topPosition}px`;
-
-                    // El resto de las propiedades no cambia.
+                    const x = Math.random() * 100;
+                    const y = Math.random() * 100;
+                    star.style.left = `${x}%`;
+                    star.style.top = `${y}%`;
                     const size = Math.random() * 3 + 1;
                     star.style.width = `${size}px`;
                     star.style.height = `${size}px`;
                     star.style.animationDuration = `${Math.random() * 3 + 2}s`;
                     star.style.animationDelay = `${Math.random() * 5}s`;
                     starContainer.appendChild(star);
+                    stars.push({
+                        element: star,
+                        originalY: y,
+                        speed: 0.2
+                    });
                 }
 
-                // Generar Nubes (sin cambios, ya funciona correctamente)
+                // --- GENERADOR DE NUBES (ahora usa los SVG incrustados) ---
                 for (let i = 0; i < NUM_CLOUDS; i++) {
                     const cloud = document.createElement('div');
                     cloud.classList.add('parallax-cloud');
-                    cloud.style.left = `${Math.random() * 120 - 10}%`;
-
-                    const randomFactor = (Math.random() + Math.random()) / 2;
-                    const topPosition = randomFactor * totalPageHeight;
-                    cloud.style.top = `${topPosition}px`;
-
-                    const scale = Math.random() * 0.6 + 0.3;
-                    cloud.style.scale = scale;
-
+                    const x = Math.random() * 120 - 10;
+                    const y = Math.random() * 100;
+                    cloud.style.left = `${x}%`;
+                    cloud.style.top = `${y}%`;
+                    const scale = Math.random() * 1.5 + 0.3;
+                    cloud.style.transform = `scale(${scale})`;
+                    cloud.style.opacity = Math.random() * 0.4 + 0.2;
+                    cloud.style.width = '100px';
                     cloud.style.animationDelay = `${Math.random() * 60}s`;
-                    cloud.style.animationDuration = `${Math.random() * 40 + 60}s`;
+                    cloud.style.animationDuration = `${Math.random() * 1 + 10}s`;
 
+                    // SVG aleatorio del array local (siempre disponible)
                     const randomCloudIndex = Math.floor(Math.random() * loadedClouds.length);
                     cloud.innerHTML = loadedClouds[randomCloudIndex];
 
                     cloudContainer.appendChild(cloud);
+                    clouds.push({
+                        element: cloud,
+                        originalY: y,
+                        speed: 0.5
+                    });
                 }
             }
 
-            // --- Lógica para la animación de nubes cortina (sin cambios) ---
-            function setupIntersectionObserver() {
-                const sections = document.querySelectorAll('section');
-                const observerOptions = {
-                    root: document.querySelector('.wrapper'), // El contenedor de scroll
-                    rootMargin: '0px',
-                    // La acción se dispara cuando el 40% de la sección es visible
-                    threshold: 0.1 
-                };
+            function setupParallax() {
+                // (Esta función no necesita cambios)
+                const wrapper = document.querySelector('.wrapper');
+                if (!wrapper) return;
 
-                const sectionObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        // --- ESTA ES LA NUEVA LÓGICA ---
-                        // classList.toggle(nombreClase, condiciónBooleana)
-                        // Si 'entry.isIntersecting' es true, AÑADE la clase.
-                        // Si 'entry.isIntersecting' es false, QUITA la clase.
-                        entry.target.classList.toggle('section-visible', entry.isIntersecting);
+                function updateParallax() {
+                    const scrollTop = wrapper.scrollTop;
+                    stars.forEach(star => {
+                        const moveY = scrollTop * star.speed;
+                        const newY = star.originalY - (moveY / window.innerHeight * 100);
+                        star.element.style.top = `${newY}%`;
                     });
-                }, observerOptions);
-
-                sections.forEach(section => sectionObserver.observe(section));
+                    clouds.forEach(cloud => {
+                        const moveY = scrollTop * cloud.speed;
+                        const newY = cloud.originalY - (moveY / window.innerHeight * 100);
+                        cloud.element.style.top = `${newY}%`;
+                    });
+                }
+                wrapper.addEventListener('scroll', updateParallax);
+                updateParallax();
             }
-            // --- Lógica para el modal de descargas (sin cambios) ---
-            function setupModal() {
-                const downloadButton = document.getElementById('download-btn');
-                const modalContainer = document.getElementById('modal-container');
-                const closeModalButton = modalContainer?.querySelector('.close-modal');
 
-                if (downloadButton && modalContainer) {
-                    downloadButton.addEventListener('click', () => {
-                        modalContainer.classList.add('visible');
-                    });
-
-                    if (closeModalButton) {
-                        closeModalButton.addEventListener('click', () => {
-                            modalContainer.classList.remove('visible');
-                        });
+            // --- LÓGICA PARA LA ANIMACIÓN DE NUBES CORTINA (sin cambios) ---
+            const sections = document.querySelectorAll('section');
+            const observerOptions = {
+                root: document.querySelector('.wrapper'), // Optimizacion: observar dentro del scrollable
+                rootMargin: '0px',
+                threshold: 0.4
+            };
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('section-visible');
+                    } else {
+                        // Opcional: si quieres que la animación se repita al salir y volver a entrar
+                        // entry.target.classList.remove('section-visible');
                     }
+                });
+            }, observerOptions);
+            sections.forEach(section => sectionObserver.observe(section));
 
-                    modalContainer.addEventListener('click', (e) => {
-                        if (e.target === modalContainer) {
-                            modalContainer.classList.remove('visible');
-                        }
+
+            // --- LÓGICA PARA EL MODAL DE DESCARGAS (sin cambios) ---
+            const downloadButton = document.getElementById('download-btn');
+            const modalContainer = document.getElementById('modal-container');
+            const closeModalButton = modalContainer?.querySelector('.close-modal');
+
+            if (downloadButton && modalContainer) {
+                downloadButton.addEventListener('click', () => {
+                    modalContainer.classList.add('visible');
+                });
+
+                if (closeModalButton) {
+                    closeModalButton.addEventListener('click', () => {
+                        modalContainer.classList.remove('visible');
                     });
                 }
-            }
 
-            // Ejecutar todo
-            createDynamicSky();
-            setupIntersectionObserver();
-            setupModal();
-            window.addEventListener('resize', createDynamicSky); // Volver a generar si cambia el tamaño
+                modalContainer.addEventListener('click', (e) => {
+                    if (e.target === modalContainer) {
+                        modalContainer.classList.remove('visible');
+                    }
+                });
+            }
         });
     </script>
+    <!-- ========== Fin del Script ============= -->
 </body>
 
 </html>
