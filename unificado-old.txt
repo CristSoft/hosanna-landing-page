@@ -1,4 +1,4 @@
-// hosanna_landing_page/index.html
+// google-version/index.html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -47,7 +47,7 @@
                     <div class="cloud cloud-left"></div>
                     <div class="cloud cloud-right"></div>
                 </div>
-                <div class="content-wrapper texto">
+                <div class="content-wrapper">
                     <h2 class="subtitle">Visión</h2>
                     <p>
                         Jóvenes adventistas de Argentina y otros territorios...
@@ -73,7 +73,7 @@
                     <div class="cloud cloud-left"></div>
                     <div class="cloud cloud-right"></div>
                 </div>
-                <div class="content-wrapper texto">
+                <div class="content-wrapper">
                     <h2 class="subtitle">¿Cómo surgió y qué objetivos se han cumplido?</h2>
                     <p>
                         El ministerio Hosanna surgió en el año 2018 entre un grupo...
@@ -110,7 +110,7 @@
                     <div class="cloud cloud-left"></div>
                     <div class="cloud cloud-right"></div>
                 </div>
-                <div class="content-wrapper texto">
+                <div class="content-wrapper">
                     <h2 class="subtitle">¿Cuáles son los próximos objetivos a alcanzar?</h2>
                     <p>
                         El ministerio Hosanna, a la fecha, se mantiene activo...
@@ -130,7 +130,7 @@
                     <div class="cloud cloud-left"></div>
                     <div class="cloud cloud-right"></div>
                 </div>
-                <div class="content-wrapper texto">
+                <div class="content-wrapper">
                     <h2 class="subtitle">¿Te gustaría colaborar con el proyecto?</h2>
                     <p>
                         Para hacer realidad el deseo y la necesidad de lograr el desarrollo...
@@ -189,7 +189,8 @@
 
 
 
-// hosanna_landing_page/script.js
+
+// google-version/script.js
 document.addEventListener('DOMContentLoaded', async () => {
 
     // --- CORRECCIÓN DE RUTAS ---
@@ -386,7 +387,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 
-// hosanna_landing_page/style.css
+// google-version/style.css
 /* ======== FUENTES PERSONALIZADAS Y VARIABLES DE COLOR ======== */
 @font-face {
     font-family: 'Blastimo';
@@ -400,11 +401,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 :root {
     /* Colores para el degradado del cielo */
-    --cielo-1: rgba(3, 4, 310, 0);
-    --cielo-2: rgba(41, 40, 620, 0.25);
-    --cielo-3: rgba(168, 159, 1680, 0.5);
-    --cielo-4: rgba(234, 237, 2410, 0.75);
-    --cielo-5: rgba(230, 244, 2490, 0.9);
+    --cielo-1: rgb(3, 4, 31);
+    --cielo-2: rgb(41, 40, 62);
+    --cielo-3: rgb(168, 159, 168);
+    --cielo-4: rgb(234, 237, 241);
+    --cielo-5: rgb(230, 244, 249);
 
     --color-morado-oscuro: #2a2641;
     --color-morado-claro: #6750a4;
@@ -427,9 +428,10 @@ html,
 body {
     overflow: hidden;
     height: 100%;
-    background-color: var(--color-morado-oscuro);
+    background-color: var(--cielo-1);
     font-family: var(--font-body);
     color: var(--color-blanco);
+    mix-blend-mode:hard-light;
 }
 
 /* ======== CABECERA FIJA ======== */
@@ -452,40 +454,27 @@ header {
     height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
-    position: relative;
-    /* mix-blend-mode:hard-light; */
-    /* opacity: 0.1; */
+    position: relative;    
+    /* Removemos perspective y transform-style - usaremos otro método */
 }
 
 /* ======== CAPAS DE PARALLAX (Estrellas y Nubes) ======== */
 #star-container,
 #cloud-layer {
-    position: fixed;
-    /* CAMBIO: fixed en lugar de absolute */
+    position: fixed; /* CAMBIO: fixed en lugar de absolute */
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 400vh;
-    /* CAMBIO: altura fija de viewport */
+    width: 100%;
+    height: 100vh; /* CAMBIO: altura fija de viewport */
     pointer-events: none;
 }
 
-#cloud-layer {
-    z-index: 2;
-    top: calc(200vh / 2);
-    height: 100vh;
-
-    /* CAMBIO: z-index mayor que estrellas */
-}
-
 #star-container {
-    z-index: 1;
-    /* CAMBIO: z-index positivo pero bajo */
+    z-index: 1; /* CAMBIO: z-index positivo pero bajo */
 }
 
 #cloud-layer {
-    z-index: 2;
-    /* CAMBIO: z-index mayor que estrellas */
+    z-index: 2; /* CAMBIO: z-index mayor que estrellas */
 }
 
 .star {
@@ -493,16 +482,13 @@ header {
     background-color: var(--color-blanco);
     border-radius: 50%;
     animation: twinkle linear infinite;
-    mix-blend-mode: hard-light;
+    mix-blend-mode:hard-light;
 }
 
 @keyframes twinkle {
-
-    0%,
-    100% {
+    0%, 100% {
         opacity: 0.2;
     }
-
     50% {
         opacity: 1;
     }
@@ -511,8 +497,7 @@ header {
 /* ======== NUBES PARALLAX REFINADAS ======== */
 .parallax-cloud {
     position: absolute;
-    opacity: 0.6;
-    /* CAMBIO: Menos opacidad para que no compitan con el contenido */
+    opacity: 0.6; /* CAMBIO: Menos opacidad para que no compitan con el contenido */
     line-height: 0;
     animation: drift 60s linear infinite;
 }
@@ -520,8 +505,7 @@ header {
 .parallax-cloud svg {
     width: 100%;
     height: auto;
-    fill: rgba(255, 255, 255, 0.3);
-    /* CAMBIO: Color más sutil */
+    fill: rgba(255, 255, 255, 0.3); /* CAMBIO: Color más sutil */
     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
@@ -530,7 +514,6 @@ header {
     from {
         transform: translateX(-100px);
     }
-
     to {
         transform: translateX(100px);
     }
@@ -539,9 +522,8 @@ header {
 /* ======== CONTENIDO PRINCIPAL (main) ======== */
 main {
     position: relative;
-    z-index: 10;
-    /* CAMBIO: z-index alto para estar sobre el parallax */
-
+    z-index: 10; /* CAMBIO: z-index alto para estar sobre el parallax */
+    
     /* El fondo degradado se queda aquí */
     background: linear-gradient(to bottom,
             var(--cielo-1) 0%,
@@ -555,7 +537,7 @@ main {
             var(--cielo-1) 100%);
     background-size: 100% 100%;
     background-repeat: no-repeat;
-
+    
     /* CAMBIO: Hacemos el fondo semi-transparente para ver las capas de parallax */
     background-blend-mode: multiply;
     mix-blend-mode: normal;
@@ -599,16 +581,7 @@ section {
     max-width: 800px;
     text-align: center;
     position: relative;
-    z-index: 2;
-    /* CAMBIO: Aseguramos que el contenido esté por encima de todo */
-
-}
-
-.texto {
-    background: rgba(25, 22, 38, 0.2);
-    backdrop-filter: blur(2px);
-    padding: 2rem;
-    border-radius: 15px;
+    z-index: 2; /* CAMBIO: Aseguramos que el contenido esté por encima de todo */
 }
 
 .logo {
@@ -659,8 +632,7 @@ nav {
     font-weight: 50;
     color: var(--color-blanco);
     margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    /* CAMBIO: Sombra para mejor legibilidad */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* CAMBIO: Sombra para mejor legibilidad */
 }
 
 .subtitle {
@@ -670,8 +642,7 @@ nav {
     font-weight: 700;
     margin-top: 2rem;
     margin-bottom: 1rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    /* CAMBIO: Sombra para mejor legibilidad */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* CAMBIO: Sombra para mejor legibilidad */
 }
 
 p,
@@ -680,8 +651,7 @@ li {
     line-height: 1.8;
     color: var(--color-gris-claro);
     margin-bottom: 1rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    /* CAMBIO: Sombra para mejor legibilidad */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* CAMBIO: Sombra para mejor legibilidad */
 }
 
 ul {
@@ -694,10 +664,8 @@ ul {
     margin-top: 2rem;
     padding: 1rem;
     border-left: 3px solid var(--color-rojo-cta);
-    background: rgba(0, 0, 0, 0.4);
-    /* CAMBIO: Fondo más opaco */
-    border-radius: 5px;
-    /* CAMBIO: Bordes redondeados */
+    background: rgba(0, 0, 0, 0.4); /* CAMBIO: Fondo más opaco */
+    border-radius: 5px; /* CAMBIO: Bordes redondeados */
 }
 
 .cloud-curtain {
@@ -722,13 +690,13 @@ ul {
 
 .cloud-left {
     left: 0;
-    background-image: url('assets/img/svg/cloud_rounded.svg');
+    background-image: url('assets/img/nube_01.svg');
     background-position: left center;
 }
 
 .cloud-right {
     right: 0;
-    background-image: url('assets/img/svg/cloud_rounded.svg');
+    background-image: url('assets/img/nube_02.svg');
     background-position: right center;
 }
 

@@ -266,7 +266,7 @@ nav {
 
 .title-main {
     font-family: var(--font-title);
-    font-size: clamp(4rem, 15vw, 9rem);
+    font-size: clamp(6rem, 23vw, 14rem);
     font-weight: 50;
     color: var(--color-blanco);
     margin-bottom: 1rem;
