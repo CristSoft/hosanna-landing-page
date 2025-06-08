@@ -478,3 +478,49 @@ ul {
     font-size: 4rem;
     margin-top: 1rem;
 }
+
+/* Estilos para los íconos de contacto */
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-morado-oscuro);
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-morado-claro);
+    border-radius: 50%;
+    padding: 10px;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.contact-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--color-blanco);
+}
+
+.contact-icon:hover {
+    background-color: #584195;
+    transform: scale(1.1);
+}
+
+.contact-label {
+    font-size: 0.9rem;
+    color: var(--color-morado-oscuro);
+    margin-top: 0.25rem;
+}

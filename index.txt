@@ -7,8 +7,17 @@
     <title>Cancionero Hosanna</title>
     <style>
         /* ======== FUENTES PERSONALIZADAS Y VARIABLES DE COLOR ======== */
-        @font-face {font-family: 'Blastimo';..omitido porque es una fuente en base 64}
-        @font-face {font-family: 'Sukhumvit-text';..omitido porque es una fuente en base 64}
+        @font-face {
+            font-family: 'Sukhumvit';
+            src: url('assets/fonts/Sukhumvit-Text.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Blastimo';
+            src: url('assets/fonts/Blastimo.ttf') format('truetype');
+        }
+
+
         :root {
             --cielo-1: rgba(3, 4, 31, 0);
             --cielo-2: rgba(41, 40, 62, 0.25);
@@ -119,8 +128,10 @@
         .parallax-cloud {
             position: absolute;
             opacity: 0.6;
+            /* Dejaremos esta opacidad base */
             line-height: 0;
             animation: drift 60s linear infinite;
+            filter: blur(5px);
         }
 
         .parallax-cloud svg {
@@ -132,12 +143,23 @@
         }
 
         @keyframes drift {
-            from {
-                transform: translateX(-100px);
+            0% {
+                transform: translateX(-150%);
+                opacity: 0;
             }
 
-            to {
-                transform: translateX(100px);
+            10% {
+                opacity: 0.6;
+            }
+
+            /* CAMBIO: El fade-out empieza antes */
+            80% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateX(110vw);
+                opacity: 0;
             }
         }
 
@@ -169,6 +191,20 @@
             justify-content: center;
             padding: 6rem 2rem 4rem;
             overflow: hidden;
+
+            /* --- NUEVA LÓGICA DE BLUR --- */
+            /* 1. Por defecto, cada sección está desenfocada. */
+            filter: blur(20px);
+            /* 2. La escalamos un poco para que los bordes borrosos no se vean. */
+            transform: scale(1.1);
+            /* 3. Definimos la transición suave para el filtro y la transformación. */
+            transition: filter 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+
+        /* Cuando la sección se hace visible, quitamos el blur y la escala. */
+        .section-visible {
+            filter: blur(0);
+            transform: scale(1);
         }
 
         .content-wrapper {
@@ -201,7 +237,7 @@
             font-family: var(--font-body);
             text-decoration: none;
             color: var(--color-gris-claro);
-            background: transparent;
+            background: rgba(143, 127, 168, 0.26);
             border: 1px solid transparent;
             padding: 0.5rem 1rem;
             border-radius: 20px;
@@ -228,6 +264,19 @@
             box-shadow: 0 0 25px rgba(255, 76, 76, 0.8);
         }
 
+        /*Cancionero*/
+        /*   .uppertitle {
+            font-family: var(--font-body);
+            font-size: clamp(0.8rem,2vw, 1.6rem);            
+            color: var(--color-blanco);            
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding-top: 150px;
+            padding-left: 100px;
+            margin-bottom: -130px;            
+            position:absolute;
+            
+        } */
+
         .title-main {
             font-family: var(--font-title);
             font-size: clamp(6rem, 23vw, 14rem);
@@ -235,6 +284,27 @@
             color: var(--color-blanco);
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+            /* Mantenemos esto para el apilamiento de z-index */
+            position: relative;
+            z-index: 5;
+            /* ELIMINAMOS 'overflow: hidden' */
+        }
+
+        /* Estilos para el footer simple */
+        .footer-simple {
+            position: fixed;
+            bottom: 0px;
+            /* background: rgba(25, 22, 38, 0.8); */
+            color: var(--color-gris-claro);
+            text-align: center;
+            padding-top: 4rem;
+            padding-bottom: 0.5rem;
+            margin-bottom: -1rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            backdrop-filter: blur(2px);
+            width: 100%;
         }
 
         .subtitle {
@@ -270,47 +340,7 @@
             border-radius: 5px;
         }
 
-        .cloud-curtain {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 5;
-            pointer-events: none;
-        }
 
-        .cloud {
-            position: absolute;
-            top: 0;
-            width: 55%;
-            height: 100%;
-            background-size: cover;
-            background-repeat: no-repeat;
-            transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.5s ease;
-        }
-
-        .cloud-left {
-            left: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 -10 120 80" xmlns="http://www.w3.org/2000/svg"><path d="M110.7,35.3c-0.1-13.4-10.9-24.2-24.3-24.2c-4.9,0-9.4,1.5-13.2,4c-4.4-10.5-15.1-17.9-27.5-17.9c-16.5,0-29.8,13.4-29.8,29.8c0,2.1,0.2,4.2,0.6,6.2C7.3,34.8,0,42.9,0,52.8C0,62.3,7.7,70,17.2,70h86.2c9.5,0,17.2-7.7,17.2-17.2C120.5,45.8,116.5,38.6,110.7,35.3z" fill="%23FFFFFF"/></svg>');
-            background-position: left center;
-        }
-
-        .cloud-right {
-            right: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 -10 120 80" xmlns="http://www.w3.org/2000/svg"><path d="M110.7,35.3c-0.1-13.4-10.9-24.2-24.3-24.2c-4.9,0-9.4,1.5-13.2,4c-4.4-10.5-15.1-17.9-27.5-17.9c-16.5,0-29.8,13.4-29.8,29.8c0,2.1,0.2,4.2,0.6,6.2C7.3,34.8,0,42.9,0,52.8C0,62.3,7.7,70,17.2,70h86.2c9.5,0,17.2-7.7,17.2-17.2C120.5,45.8,116.5,38.6,110.7,35.3z" fill="%23FFFFFF"/></svg>');
-            background-position: right center;
-        }
-
-        .section-visible .cloud-left {
-            transform: translateX(-100%);
-            opacity: 0.2;
-        }
-
-        .section-visible .cloud-right {
-            transform: translateX(100%);
-            opacity: 0.2;
-        }
 
         .contact-links {
             margin: 2rem 0;
@@ -321,13 +351,14 @@
 
         .contact-icon {
             text-decoration: none;
-            color: var(--color-gris-claro);
+            /* color: var(--color-gris-claro); */
+            color: var(--color-blanco);
             transition: transform 0.3s ease, color 0.3s ease;
         }
 
         .contact-icon:hover {
             transform: scale(1.2);
-            color: var(--color-blanco);
+            color: var(--color-morado-claro);
         }
 
         .contact-icon svg {
@@ -437,14 +468,199 @@
             font-size: 4rem;
             margin-top: 1rem;
         }
+
+        b {
+            font-weight: bold;
+            /* color: var(--color-morado-oscuro); */
+            text-shadow: 2px 2px 4px var(--color-morado-claro)
+        }
+
+        /* Estilos para los íconos de contacto */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--color-morado-oscuro);
+        }
+
+        .contact-icon {
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-morado-claro);
+            border-radius: 50%;
+            padding: 10px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--color-blanco);
+        }
+
+        .contact-icon:hover {
+            background-color: #584195;
+            transform: scale(1.2);
+        }
+
+        .contact-label {
+            font-size: 0.9rem;
+            color: var(--color-blanco);
+            margin-top: 0.25rem;
+        }
+
+        /* Contenedor principal del cometa */
+        /* Reemplaza tu regla .comet por esta */
+        .comet {
+            position: absolute;
+            /* Lo posicionamos en el centro vertical de su nuevo padre (.content-wrapper) */
+            top: 20%;
+            left: -100px;
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(to left, rgba(200, 230, 255, 0.9), transparent);
+            border-radius: 50%;
+            filter: drop-shadow(0 0 15px rgba(200, 230, 255, 0.7));
+            z-index: 20;
+            /* Por encima del texto y del halo de luz */
+            animation: comet 25s linear infinite;
+            animation-delay: 2s;
+            opacity: 0;
+            backdrop-filter: brightness(5.0);
+            backdrop-filter: hue-rotate(180deg);
+            /* rotate: 30deg; */
+            /* Evita que el usuario pueda hacer clic o seleccionar el cometa */
+            pointer-events: none;
+            filter: blur(0.5px);
+        }
+
+        /* Cabeza fulgurante del cometa (sin cambios importantes, solo z-index) */
+        .comet::before {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: #eaf6ff;
+            border-radius: 50%;
+            box-shadow: 0 0 20px 8px rgba(200, 230, 255, 0.8);
+            animation: fulgurate 1s ease-in-out infinite;
+            z-index: 20;
+            /* Siempre visible, por encima de la cola */
+        }
+
+        /* === EL NUEVO FOCO DE LUZ (VERSIÓN CORREGIDA) === */
+        .comet::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+
+            /* CORRECCIÓN 1: Alineamos el halo con la punta (la cabeza) del cometa */
+            left: 100%;
+
+            /* Centramos el halo perfectamente en su nuevo punto de anclaje */
+            transform: translate(-50%, -50%);
+
+            /* Un halo un poco más grande para un efecto más notable */
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            /* Aseguramos que el área del filtro sea circular */
+
+            /* 
+     * ¡AQUÍ ESTÁ LA MAGIA!
+     * En lugar de un fondo, aplicamos un filtro al "fondo de detrás".
+     * - brightness(1.5): Aumenta el brillo de lo que está detrás en un 50%.
+     * - blur(4px): Difumina ligeramente la luz para un efecto más suave.
+     * Esto iluminará el texto y las estrellas/nubes detrás, pero NO añadirá un
+     * color propio, solucionando el problema de la iluminación selectiva.
+    */
+            backdrop-filter: brightness(10.0) blur(4px);
+            -webkit-backdrop-filter: brightness(10.0) blur(4px);
+            /* Para compatibilidad con Safari */
+
+            /* El z-index sigue siendo crucial para que esté entre el texto y el cometa */
+            z-index: 20;
+        }
+
+
+        /* Reemplaza tus @keyframes comet por estos */
+        @keyframes comet {
+
+            /* Estado inicial: Fuera de pantalla a la izq. y un poco arriba del centro */
+            0% {
+                transform: translateX(-200px) translateY(-100px) scale(0.8);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            /* Estado final: Fuera de pantalla a la der. y un poco abajo del centro */
+            100% {
+                transform: translateX(100vw) translateY(20px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Animación para hacer que la cabeza del cometa fulgure/pulse */
+        @keyframes fulgurate {
+
+            0%,
+            100% {
+                transform: translateY(-50%) scale(1);
+                opacity: 1;
+                box-shadow: 0 0 20px 8px rgba(200, 230, 255, 0.8);
+            }
+
+            50% {
+                transform: translateY(-50%) scale(1.2);
+                opacity: 0.8;
+                box-shadow: 0 0 30px 12px rgba(220, 240, 255, 0.9);
+            }
+        }
+
+        /* Animación que ilumina el texto del título cuando el cometa pasa por el centro */
+        @keyframes illuminate-text {
+
+            /* Estado normal antes y después del paso */
+            0%,
+            35%,
+            65%,
+            100% {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+
+            /* Momento de máxima iluminación (cuando el cometa está en medio) */
+            50% {
+                /* Mantenemos la sombra base y añadimos el resplandor celeste */
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+                    0 0 35px rgba(200, 230, 255, 0.7);
+            }
+        }
     </style>
 </head>
 
 <body>
     <header>
-        <div class="logo">Hosanna</div>
+        <div><a href="#intro" class="logo" style="text-decoration: none; cursor: pointer;">Hosanna</a></div>
         <nav>
-            <a href="#intro" class="nav-btn">Sobre Nosotros</a>
+            <a href="#colaborar" class="nav-btn">Contacto</a>
             <button id="download-btn" class="nav-btn cta">Descargas</button>
         </nav>
     </header>
@@ -459,70 +675,88 @@
         <main>
             <!-- ======== SECCIÓN 1: INTRO ======== -->
             <section id="intro">
-                <div class="cloud-curtain">
-                    <div class="cloud cloud-left"></div>
-                    <div class="cloud cloud-right"></div>
-                </div>
                 <div class="content-wrapper">
+                    <!-- <h3 class="uppertitle">Cancionero</h3>           -->
                     <h1 class="title-main">Hosanna</h1>
+                    <div class="comet"></div>
                     <h2 class="subtitle">¿Qué es y para qué existe?</h2>
                     <p>
-                        Es un ministerio musical creado por jóvenes adventistas...
+                        Es un ministerio musical creado por jóvenes adventistas de Argentina dedicado
+                        a motivar una correcta alabanza a Dios a través de recursos que enriquezcan la
+                        interpretación instrumental de músicas cristianas.
                     </p>
                 </div>
             </section>
 
             <!-- ======== SECCIÓN 2: VISIÓN Y MISIÓN ======== -->
             <section id="vision-mision">
-                <div class="cloud-curtain">
-                    <div class="cloud cloud-left"></div>
-                    <div class="cloud cloud-right"></div>
-                </div>
                 <div class="content-wrapper texto">
                     <h2 class="subtitle">Visión</h2>
                     <p>
-                        Jóvenes adventistas de Argentina y otros territorios...
+                        Jóvenes adventistas de Argentina y otros territorios de habla hispana que utilizan sus dones
+                        musicales para alabar a Dios en concordancia con los principios inspirados de la música.
                     </p>
                     <h2 class="subtitle">Misión</h2>
                     <p>
-                        Ofrecer herramientas útiles y de calidad a través de redes...
+                        Ofrecer herramientas útiles y de calidad a través de redes y eventos presenciales para
+                        animar a los jóvenes a consagrar sus dones musicales al servicio de Dios, siguiendo los
+                        principios inspirados de la música.
                     </p>
                     <h2 class="subtitle">Objetivos</h2>
                     <ul>
-                        <li>Crear un cancionero con letras y cifras de canciones cristianas populares.</li>
-                        <li>Producir tutoriales de interpretación en piano, guitarra y ukelele.</li>
-                        <li>Brindar materiales útiles para los jóvenes músicos a través de redes sociales.</li>
-                        <li>Desarrollar una aplicación móvil que nuclee todos los recursos.</li>
-                        <li>Apoyar programas presenciales o virtuales del ministerio joven.</li>
+                        <li>1. Crear un cancionero con letras y cifras de canciones cristianas populares en las
+                            alabanzas de la iglesia adventista. </li>
+                        <li>2. Producir tutoriales de interpretación de las canciones del cancionero en piano, guitarra
+                            y ukelele. </li>
+                        <li>3. Brindar materiales útiles para los jóvenes músicos a través de redes sociales.</li>
+                        <li>4. Desarrollar una aplicación móvil que nuclee el cancionero y otros recursos producidos y
+                            difundidos por el ministerio. </li>
+                        <li>5. Apoyar programas presenciales o virtuales organizados por el ministerio joven de las
+                            iglesias.</li>
                     </ul>
                 </div>
             </section>
 
             <!-- ======== SECCIÓN 3: HISTORIA ======== -->
             <section id="historia">
-                <div class="cloud-curtain">
-                    <div class="cloud cloud-left"></div>
-                    <div class="cloud cloud-right"></div>
-                </div>
                 <div class="content-wrapper texto">
                     <h2 class="subtitle">¿Cómo surgió y qué objetivos se han cumplido?</h2>
                     <p>
-                        El ministerio Hosanna surgió en el año 2018 entre un grupo...
+                        El ministerio Hosanna surgió en el año 2018 entre un grupo de jóvenes adventistas de la
+                        provincia de Córdoba, Argentina, motivados por satisfacer la necesidad contar con un
+                        cancionero digital con cifras para las actividades musicales de la iglesia.
                     </p>
                     <p>
-                        El cancionero fue preparado durante ese año y el siguiente...
+                        El cancionero fue preparado durante ese año y el siguiente, mientras se empezaron a
+                        compartir <b>programas musicales</b> en programas del ministerio joven. Uno de esos eventos
+                        llevó como título Hosanna, lo que dio nombre al ministerio en 2019.
                     </p>
                     <p>
-                        En el año 2020, en plena cuarentena, se lanzó el cancionero...
+                        En el año 2020, en plena cuarentena, se lanzó el <b>cancionero Hosanna</b> en formato pdf a
+                        través de un link del per l de Instagram (@hosanna.cancionero), medio a través del cual
+                        también se siguen compartiendo <b>materiales y recursos</b> útiles para el ministerio de la
+                        música.
+                        El cancionero sigue disponible para la descarga, y es actualizado con regularidad para
+                        agregar nuevas canciones y mejorarlo constantemente.
                     </p>
                     <p>
-                        Ese mismo año se comenzaron a grabar tutoriales con jóvenes voluntarios...
+                        Ese mismo año se comenzaron a grabar <b>tutoriales</b> con jóvenes voluntarios de Argentina y
+                        otros países de Sudamérica, los cuales se publican desde 2021 y hasta la fecha en dicha red
+                        social. Estos tutoriales han ayudado al ministerio a crecer en su alcance, ya que actualmente
+                        es utilizado por cientos de jóvenes adventistas en escuelas sabáticas, clubes de
+                        conquistadores, grupos misioneros, grupos pequeños, etc.
                     </p>
                     <p>
-                        También en 2021, el ministerio contó con el apoyo oficial...
+                        También en 2021, el ministerio contó con el apoyo o cial de Argentina Alaba (Dpto. de
+                        música de la Unión Argentina), recibió una pequeña suma de dinero como ofrenda para
+                        comenzar con la <b>aplicación móvil</b> y se pudieron reanudar las actividades presenciales de
+                        apoyo a los programas musicales en iglesias.
                     </p>
                     <p>
-                        En 2022 se actualizaron las gráficas del ministerio...
+                        En 2022 se actualizaron las gráficas del ministerio con miras al desarrollo de la app. Éstas
+                        están inspiradas en dos historias bíblicas de alabanza: una de ellas de día, la otra por la
+                        noche; una al comienzo del ministerio de Jesús, la otra al nal; una expresada por seres
+                        celestiales, la otra por seres humanos:
                     </p>
                     <blockquote class="quote">
                         "¡Gloria a Dios en las alturas, y en la tierra paz, buena voluntad para con los hombres!” Lucas
@@ -537,61 +771,82 @@
 
             <!-- ======== SECCIÓN 4: PRÓXIMOS OBJETIVOS ======== -->
             <section id="proximos-objetivos">
-                <div class="cloud-curtain">
-                    <div class="cloud cloud-left"></div>
-                    <div class="cloud cloud-right"></div>
-                </div>
                 <div class="content-wrapper texto">
                     <h2 class="subtitle">¿Cuáles son los próximos objetivos a alcanzar?</h2>
                     <p>
-                        El ministerio Hosanna, a la fecha, se mantiene activo...
+                        El ministerio Hosanna, a la fecha, se mantiene activo constantemente actualizando el
+                        cancionero, produciendo y publicando tutoriales, apoyando programas musicales y brindando
+                        materiales útiles para los jóvenes músicos. Tenemos el firme compromiso de continuar con este
+                        trabajo en el futuro.
                     </p>
                     <p>
-                        También quisiéramos producir otro tipo de recursos como archivos...
+                        También quisiéramos producir otro tipo de recursos como archivos con presentaciones en
+                        power point de todas las letras del cancionero, compartir talleres sobre música y adoración,
+                        personalizar accesorios útiles para instrumentistas con mensajes bíblicos y organizar un grupo
+                        pequeño, entre otros proyectos que esperamos realizar.
                     </p>
                     <p>
-                        Pero nuestro deseo más grande y objetivo más importante...
+                        Pero nuestro deseo más grande y objetivo más importante a conseguir a corto plazo es poder
+                        concretar el desarrollo de la aplicación móvil de Hosanna, ya que es el recurso que más
+                        demanda tiene entre los jóvenes, y que con muchas ansias nos piden cada vez que se
+                        comunican con nosotros.
                     </p>
                 </div>
             </section>
 
             <!-- ======== SECCIÓN 5: COLABORAR ======== -->
             <section id="colaborar">
-                <div class="cloud-curtain">
-                    <div class="cloud cloud-left"></div>
-                    <div class="cloud cloud-right"></div>
-                </div>
                 <div class="content-wrapper texto">
                     <h2 class="subtitle">¿Te gustaría colaborar con el proyecto?</h2>
                     <p>
-                        Para hacer realidad el deseo y la necesidad de lograr el desarrollo...
+                        Para hacer realidad el deseo y la necesidad de lograr el desarrollo de la aplicación móvil, se
+                        necesitan recursos económicos. Si te gustaría colaborar con este ministerio donando una
+                        ofrenda, estarás aportando a un proyecto que bendecirá mucho más a niños y jóvenes que
+                        desean poner sus dones musicales al servicio de Jesús. A continuación te dejamos el link de
+                        nuestros medios de comunicación por si deseas entrar en contacto con nosotros, y uno para
+                        hacer una donación económica a través de <b>PayPal</b> o <b>Mercado Pago</b>.
                     </p>
                     <div class="contact-links">
-                        <a href="mailto:tu-email@dominio.com" class="contact-icon" title="Correo">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
-                                <path
-                                    d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z" />
-                            </svg>
-                        </a>
-                        <a href="https://wa.me/TUNUMERO" class="contact-icon" title="Whatsapp">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
-                                <path
-                                    d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.8 0-67.6-9.5-97.8-26.7l-7.1-4.2-72.7 19.1 19.4-71.1-4.6-7.4c-18.7-29.9-28.7-65.1-28.7-101.3 0-96.5 78.7-175.2 175.2-175.2 46.2 0 89.8 18.1 123.4 51.7 33.7 33.7 51.7 77.3 51.7 123.4 0 96.5-78.7 175.2-175.2 175.2z" />
-                            </svg>
-                        </a>
-                        <a href="https://instagram.com/hosanna.cancionero" class="contact-icon" title="Instagram">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
-                                <path
-                                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9 26.3 26.2 58 34.4 93.9 36.2 37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
-                            </svg>
-                        </a>
+                        <div class="contact-item">
+                            <a href="mailto:tu-email@dominio.com" class="contact-icon" title="Correo">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                                    <path
+                                        d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z" />
+                                </svg>
+                            </a>
+                            <span class="contact-label">Correo</span>
+                        </div>
+                        <div class="contact-item">
+                            <a href="https://wa.me/TUNUMERO" class="contact-icon" title="Whatsapp">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+                                    <path
+                                        d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.8 0-67.6-9.5-97.8-26.7l-7.1-4.2-72.7 19.1 19.4-71.1-4.6-7.4c-18.7-29.9-28.7-65.1-28.7-101.3 0-96.5 78.7-175.2 175.2-175.2 46.2 0 89.8 18.1 123.4 51.7 33.7 33.7 51.7 77.3 51.7 123.4 0 96.5-78.7 175.2-175.2 175.2z" />
+                                </svg>
+                            </a>
+                            <span class="contact-label">WhatsApp</span>
+                        </div>
+                        <div class="contact-item">
+                            <a href="https://instagram.com/hosanna.cancionero" class="contact-icon" title="Instagram">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+                                    <path
+                                        d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9 26.3 26.2 58 34.4 93.9 36.2 37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                                </svg>
+                            </a>
+                            <span class="contact-label">Instagram</span>
+                        </div>
                     </div>
                     <a href="URL_DE_TU_PAYPAL" class="donation-btn">Apoya con una donación en PayPal</a>
                     <p class="final-words">Dios te bendiga, y gracias por tu interés en conocer más sobre el ministerio.
                     </p>
-                    <h1 class="title-main final-logo">Hosanna</h1>
+                    <h1><a href="#intro" class="title-main final-logo"
+                            style="text-decoration: none; cursor: pointer;">Hosanna</a></h1>
                 </div>
             </section>
+
+            <!-- copyright -->
+            <div class="footer-simple">
+                <p>&copy; 2025 Cristsoft</p>
+            </div>
         </main>
     </div>
 
@@ -614,6 +869,8 @@
         </div>
     </div>
 
+
+
     <!-- Tu JS irá aquí -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -629,23 +886,38 @@
             ];
 
             // Función para generar los elementos del cielo dinámicamente
+            // Función para generar los elementos del cielo dinámicamente
             function createDynamicSky() {
                 const starContainer = document.getElementById('star-container');
                 const cloudContainer = document.getElementById('cloud-layer');
-                if (!starContainer || !cloudContainer) return;
+                const mainElement = document.querySelector('main');
+
+                if (!starContainer || !cloudContainer || !mainElement) return;
+
+                // Medimos la altura total del contenido que se puede desplazar.
+                const totalPageHeight = mainElement.scrollHeight;
 
                 starContainer.innerHTML = '';
                 cloudContainer.innerHTML = '';
 
-                const NUM_STARS = 200;
-                const NUM_CLOUDS = 15;
+                // CAMBIO: Aumentamos el número de estrellas para una mejor densidad en toda la página.
+                const NUM_STARS = 500;
+                const NUM_CLOUDS = 25;
 
-                // Generar Estrellas
+                // Generar Estrellas (con la nueva lógica vertical)
                 for (let i = 0; i < NUM_STARS; i++) {
                     const star = document.createElement('div');
                     star.classList.add('star');
+
+                    // La posición horizontal se mantiene.
                     star.style.left = `${Math.random() * 100}%`;
-                    star.style.top = `${Math.random() * 100}%`;
+
+                    // --- CAMBIO: POSICIÓN VERTICAL DE LAS ESTRELLAS ---
+                    // Usamos la altura total de la página en píxeles, igual que con las nubes.
+                    const topPosition = Math.random() * totalPageHeight;
+                    star.style.top = `${topPosition}px`;
+
+                    // El resto de las propiedades no cambia.
                     const size = Math.random() * 3 + 1;
                     star.style.width = `${size}px`;
                     star.style.height = `${size}px`;
@@ -654,17 +926,21 @@
                     starContainer.appendChild(star);
                 }
 
-                // Generar Nubes
+                // Generar Nubes (sin cambios, ya funciona correctamente)
                 for (let i = 0; i < NUM_CLOUDS; i++) {
                     const cloud = document.createElement('div');
                     cloud.classList.add('parallax-cloud');
                     cloud.style.left = `${Math.random() * 120 - 10}%`;
-                    cloud.style.top = `${Math.random() * 100}%`;
-                    const scale = Math.random() * 0.5 + 0.1;
-                    cloud.style.transform = `scale(${scale})`;
-                    cloud.style.opacity = Math.random() * 0.4 + 0.2;
+
+                    const randomFactor = (Math.random() + Math.random()) / 2;
+                    const topPosition = randomFactor * totalPageHeight;
+                    cloud.style.top = `${topPosition}px`;
+
+                    const scale = Math.random() * 0.6 + 0.3;
+                    cloud.style.scale = scale;
+
                     cloud.style.animationDelay = `${Math.random() * 60}s`;
-                    cloud.style.animationDuration = `${Math.random() * 10 + 30}s`;
+                    cloud.style.animationDuration = `${Math.random() * 40 + 60}s`;
 
                     const randomCloudIndex = Math.floor(Math.random() * loadedClouds.length);
                     cloud.innerHTML = loadedClouds[randomCloudIndex];
@@ -673,26 +949,28 @@
                 }
             }
 
-            // --- Ya no necesitamos una función para el parallax. El CSS se encarga. ---
-
             // --- Lógica para la animación de nubes cortina (sin cambios) ---
             function setupIntersectionObserver() {
                 const sections = document.querySelectorAll('section');
                 const observerOptions = {
-                    root: document.querySelector('.wrapper'),
+                    root: document.querySelector('.wrapper'), // El contenedor de scroll
                     rootMargin: '0px',
-                    threshold: 0.4
+                    // La acción se dispara cuando el 40% de la sección es visible
+                    threshold: 0.1
                 };
+
                 const sectionObserver = new IntersectionObserver((entries, observer) => {
                     entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('section-visible');
-                        }
+                        // --- ESTA ES LA NUEVA LÓGICA ---
+                        // classList.toggle(nombreClase, condiciónBooleana)
+                        // Si 'entry.isIntersecting' es true, AÑADE la clase.
+                        // Si 'entry.isIntersecting' es false, QUITA la clase.
+                        entry.target.classList.toggle('section-visible', entry.isIntersecting);
                     });
                 }, observerOptions);
+
                 sections.forEach(section => sectionObserver.observe(section));
             }
-
             // --- Lógica para el modal de descargas (sin cambios) ---
             function setupModal() {
                 const downloadButton = document.getElementById('download-btn');
