@@ -1,0 +1,29 @@
+name: Deploy a GCS
+
+on:
+  push:
+    branches:
+      - main  # o master, si usás esa rama
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del código
+      uses: actions/checkout@v3
+
+    - name: Autenticarse en Google Cloud
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+    - name: Instalar gcloud CLI
+      uses: google-github-actions/setup-gcloud@v2
+      with:
+        project_id: hosanna-462415
+        install_components: gsutil
+
+    - name: Subir solo index.html al bucket
+      run: |
+        gsutil cp index.html gs://hosanna-web
