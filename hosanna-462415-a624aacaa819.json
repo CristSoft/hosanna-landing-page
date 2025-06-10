@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "hosanna-462415",
+  "private_key_id": "a624aacaa819689756453c420088a97c51938c4f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCv2p1cMcPlKQxR\n8BBkuik1f/d9DP7mABPvAUYD73TNONJfTO3h9EPUR5ZVm7Cxd5Wns92OfZ/V7GHj\nFDgEl5VUA5baW8upUpJ9zLwVPsphCqDt+7wsZUhVp9GdFokMRusFKGaQEjyzy3kH\nAo1ZPOIhway+iX6UprrCLYMyZYRxdUhD468XRaDPMmVD8uTNZLXiLiYlemZw+qSs\nHDwDFpH6A7vOAh8ydkXXmBGQCRzy/Cu+O2HNdVAyV1gRo2DL9Xpikb5TF5DWeOTQ\n7qdeVRIJ+KO+8ivlN5740W4NrJuQCepF/hvz+Yq1M5YL+yMW1wSGtLLUgX1Ixpoa\nHO23xAp7AgMBAAECggEAQtCgzmk4IYc9n5pDWEolIycqXPCFntTzvfExbYhbTCgl\nQkFj9uCMrwi+FWvQsDUb/vqHmT6g7rJgJNvHRvNjMOcmN3P+RyjQ8QxLgBT55vIX\nYCSwA/w9hhH7wiBQVQJTBIQrp9zOBJAwPVoaY4gO8T15iXGLTyakOef5+7l3n3WK\n/ToHWrwbqY3lpVsXBK1MbAskRa4h6i0EWXFXdtFIgDUAsXjq5mdeIUTUI6b6DvJt\nlLo1DPkpxZsBWZQF8+lY6twq4aW6CgzjMULWz5U1fGrp4UMqY9quDq3PV4fPS8El\n2WEt5Az86HfPaqPDUBTlAt3rGdQj8GZtTUGmhn/A1QKBgQDm/ob3iKSO/x5z1Few\nmFzBZDeH/nXLkVxySMmzt1kiWpv1Uc/2H4k+RCpQbLoFivw+5NtEK9Mf1gNlP0Oj\ndHWpHRMKn4ct5nMHRgeG1OhRCUD8JkfpGFUGgZ1SboPc0y7zqsM4TZd17GdEXmjj\nkHn7rORQWhIgz2yB0COTOEpc3QKBgQDC5ABvRkHNcWpt5Odq7LJIe88QWCq5w7YL\nDGfR68fOYxuVoBXiU99yujQhfvuSfXypzO69dOjLtSw6iRPV1OR+v+IcXkMaV1d8\n/jKntgyHabZZ4D2IlPTLMCC2dYkJte0zWdPjGPhowRR+Bnfx5S6kFwrwopb8fF7q\nIDFgYImDNwKBgAnToiI9qeJ7b+w1iFV25dtETCh45sH2ORyThCElF6GigSf6hwJN\nbSU8+R/awD8kHn7+dWV9B8o+7H4OJu55Mdgz6G93QeTt/M6+Z+uQeyGXZzBS4JRF\n+LgCI5MyKGHoigLLrOpkQqE9oVcDPSsRJl9Sh5PzgPnsWQ1csWa96kvxAoGAU+R3\nt26j1r7SlJmrcGCRYhhBiwSY57wyedEOQ9Pd/56z+hWeNf3quuUimaSiwG1aI3G+\n9zkDGOVVM6FcM3jgHxuURqfg9M7SL1DxFzaLcCL2Rvv7IPcV5P1Dp6cypUZ149vw\nFNrj25v5qUI5kZwZFrOAlxM2MVuMM/ZFqvoDV8MCgYAO0uFxjrg31j88iaz4OXvh\nIq/9jl4rLG+tRfhS+jgnIc0sgqNqEr9m+slcWalUs9Tt5CTqOJaPuvyVP9F7UUwO\nhwO0QiqacLqcX7Aa22jiaW0Mt5mr3EhbEA0h9KL4DSZv3sVojBjHy3Ry8zKiEJXM\n+RcEgFo2tdiJy9yS6B+dvw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "github-deploy@hosanna-462415.iam.gserviceaccount.com",
+  "client_id": "107027383784851677232",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/github-deploy%40hosanna-462415.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

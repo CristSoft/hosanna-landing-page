@@ -1,9 +1,8 @@
-name: Deploy a GCS
+name: Deploy to Google Cloud Storage using Rclone
 
 on:
   push:
-    branches:
-      - main  # o master, si usás esa rama
+    branches: [main]
 
 jobs:
   deploy:
@@ -13,17 +12,22 @@ jobs:
     - name: Checkout del código
       uses: actions/checkout@v3
 
-    - name: Autenticarse en Google Cloud
-      uses: google-github-actions/auth@v2
-      with:
-        credentials_json: '${{ secrets.GCP_SA_KEY }}'
-
-    - name: Instalar gcloud CLI
-      uses: google-github-actions/setup-gcloud@v2
-      with:
-        project_id: hosanna-462415
-        install_components: gsutil
-
-    - name: Subir solo index.html al bucket
+    - name: Instalar Rclone
       run: |
-        gsutil cp **/index.html gs://hosanna-web
+        curl https://rclone.org/install.sh | sudo bash
+
+    - name: Crear archivo clave.json desde secret
+      run: |
+        echo "${{ secrets.GCS_RCLONE_KEY }}" | base64 -d > clave.json
+
+    - name: Crear rclone.conf
+      run: |
+        mkdir -p ~/.config/rclone
+        echo "[gcs]" > ~/.config/rclone/rclone.conf
+        echo "type = google cloud storage" >> ~/.config/rclone/rclone.conf
+        echo "project_number = hosanna-462415" >> ~/.config/rclone/rclone.conf
+        echo "service_account_file = clave.json" >> ~/.config/rclone/rclone.conf
+
+    - name: Subir index.html al bucket
+      run: |
+        rclone copy index.html gcs:hosanna-web
