@@ -26,4 +26,4 @@ jobs:
 
     - name: Subir solo index.html al bucket
       run: |
-        gsutil cp index.html gs://hosanna-web
+        gsutil cp **/index.html gs://hosanna-web
