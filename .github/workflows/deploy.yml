@@ -30,4 +30,4 @@ jobs:
 
     - name: Subir index.html al bucket
       run: |
-        rclone copy index.html gcs:hosanna-web
+        rclone copy index.html gcs:hosanna_web
