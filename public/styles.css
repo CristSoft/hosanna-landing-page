@@ -633,12 +633,17 @@ ul {
     text-decoration: none;
     font-weight: bold;
     margin-bottom: 2rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease;        
 }
 
 .donation-btn:hover {
     background-color: #584195;
     transform: scale(1.05);
+}
+
+.donation-icon svg {
+    width: 52px;
+    height: 52px
 }
 
 .final-words {
@@ -673,8 +678,8 @@ b {
 }
 
 .contact-icon {
-    width: 64px;
-    height: 64px;
+    width: 96px;
+    height: 96px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -686,8 +691,8 @@ b {
 }
 
 .contact-icon svg {
-    width: 32px;
-    height: 32px;
+    width: 52px;
+    height: 52px;
     fill: var(--color-blanco);
 }
 
