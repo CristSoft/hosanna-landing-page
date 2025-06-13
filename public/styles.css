@@ -513,14 +513,22 @@ ul {
     height: 36px;
 }
 
+
+/* Modal */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
 #modal-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.5);
+    /*backdrop-filter: blur(5px);*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -536,15 +544,19 @@ ul {
 }
 
 .modal-content {
+    /*fondo con transparencia*/    
     background: var(--color-morado-oscuro);
-    padding: 2rem;
-    border-radius: 25px;
+    opacity: 98%;
+    backdrop-filter: blur(8px);
+    padding: 24px;
+    border-radius: 24px;
     width: 90%;
     max-width: 500px;
     position: relative;
     border: 1px solid var(--color-morado-claro);
     transform: scale(0.95);
     transition: transform 0.3s ease;
+    animation: float 5s ease-in-out infinite;
 }
 
 #modal-container.visible .modal-content {
@@ -574,11 +586,33 @@ ul {
     border-radius: 10px;
     text-decoration: none;
     color: var(--color-blanco);
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    display: block;
 }
 
 .download-link:hover {
-    background: var(--color-morado-claro);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(156, 39, 176, 0.4);
+    background: linear-gradient(45deg, #6a1b9a, #9c27b0);
+}
+
+.download-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.download-link:hover::before {
+    left: 100%;
 }
 
 .download-link.disabled {
