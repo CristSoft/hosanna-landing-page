@@ -5,62 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página no encontrada - Cancionero Hosanna</title>
     <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="styles.css">
     <style>
-        :root {
-            --color-primario: #6a1b9a;
-            --color-secundario: #9c27b0;
-            --color-fondo: #f5f5f5;
-            --color-texto: #333;
-            --color-blanco: #ffffff;
-            --color-morado-oscuro: #4a148c;
-            --color-morado-claro: #e1bee7;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--color-fondo);
-            color: var(--color-texto);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        body::before {
-            content: '';
+        /* Nubes animadas */
+        .clouds {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlMWJlZTciIHN0cm9rZS13aWR0aD0iMC41Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIiBvcGFjaXR5PSIwLjEiLz48L3N2Zz4=');
-            opacity: 0.6;
+            overflow: hidden;
             z-index: -1;
         }
         
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveClouds 60s linear infinite;
+        }
+        
+        .cloud:nth-child(1) {
+            width: 200px;
+            height: 60px;
+            top: 20%;
+            left: -200px;
+            animation-delay: 0s;
+        }
+        
+        .cloud:nth-child(2) {
+            width: 300px;
+            height: 90px;
+            top: 40%;
+            left: -300px;
+            animation-delay: 10s;
+            animation-duration: 80s;
+        }
+        
+        .cloud:nth-child(3) {
+            width: 250px;
+            height: 75px;
+            top: 70%;
+            left: -250px;
+            animation-delay: 20s;
+            animation-duration: 70s;
+        }
+        
+        .cloud:nth-child(4) {
+            width: 350px;
+            height: 105px;
+            top: 60%;
+            left: -350px;
+            animation-delay: 30s;
+            animation-duration: 90s;
+        }
+        
+        @keyframes moveClouds {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(calc(100vw + 100%)); }
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sukhumvit', sans-serif;
+            background: var(--color-morado-oscuro);
+            color: var(--color-blanco);
+            line-height: 1.6;
+            min-height: 100vh;     
+            height: 100%;       
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+            padding: 20px;
+            opacity: 1 !important; /* Forzar visibilidad */
+        }
+        
         .error-container {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 12px;
+            padding: 1rem;
             text-align: center;
-            padding: 2rem;
-            max-width: 600px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 85%;
+            height: 100%;
+            max-height: 100vh;
+            margin: 0em auto;
+            box-sizing: border-box;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+            opacity: 1;
             transform: translateY(0);
             animation: float 6s ease-in-out infinite;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: auto;
         }
         
         @keyframes float {
@@ -70,82 +119,140 @@
         }
         
         .error-code {
-            font-size: 8rem;
+            font-size: 4rem;
             font-weight: 900;
-            background: linear-gradient(45deg, var(--color-morado-oscuro), var(--color-secundario));
+            background: linear-gradient(45deg, #e1bee7, #9c27b0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
+            margin: 0.2rem 0;
             line-height: 1;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 0 8px rgba(156, 39, 176, 0.5);
+            font-family: 'Blastimo', sans-serif;
+            flex-shrink: 0;
         }
         
         .error-title {
-            font-size: 2rem;
-            color: var(--color-morado-oscuro);
-            margin-bottom: 1.5rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin: 0.4rem 0;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+            padding: 0 0.5rem;
         }
         
         .error-message {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: #555;
+            font-size: 0.85rem;
+            margin: 0.4rem 0 0.8rem;
+            color: #e1bee7;
+            line-height: 1.4;
+            flex-shrink: 0;
+            max-width: 100%;
+            padding: 0 0.5rem;
         }
         
         .home-button {
             display: inline-block;
-            padding: 0.8rem 2rem;
-            background: linear-gradient(45deg, var(--color-morado-oscuro), var(--color-secundario));
+            padding: 0.6rem 1.5rem;
+            background: linear-gradient(45deg, #9c27b0, #6a1b9a);
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3);
-            border: none;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            font-size: 0.8rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            margin: 0.3rem 0 0.2rem;
+            flex-shrink: 0;
         }
         
         .home-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(106, 27, 154, 0.4);
-            background: linear-gradient(45deg, var(--color-secundario), var(--color-morado-oscuro));
+            box-shadow: 0 8px 25px rgba(156, 39, 176, 0.4);
+            background: linear-gradient(45deg, #6a1b9a, #9c27b0);
+        }
+        
+        .home-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .home-button:hover::before {
+            left: 100%;
         }
         
         .error-illustration {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 2rem;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236a1b9a"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>') no-repeat center;
+            width: 80px;
+            height: 80px;
+            margin: 0.3rem auto;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e1bee7'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'/%3E%3C/svg%3E") no-repeat center;
             background-size: contain;
-            opacity: 0.8;
+            opacity: 0.9;
+            filter: drop-shadow(0 0 8px rgba(225, 190, 231, 0.5));
+            animation: pulse 2s infinite;
+            flex-shrink: 0;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         
         @media (max-width: 768px) {
             .error-container {
-                margin: 1rem;
-                padding: 1.5rem;
+                margin: 1rem auto;
+                padding: 1rem;
+                max-height: 90vh;
+                width: 90%;
+                max-width: 350px;
             }
             
             .error-code {
-                font-size: 6rem;
+                font-size: 3.5rem;
             }
             
             .error-title {
-                font-size: 1.5rem;
+                font-size: 1.25rem;
             }
             
             .error-message {
-                font-size: 1rem;
+                font-size: 0.85rem;
+                margin: 0.3rem 0 0.7rem;
+                margin-top: 1rem;
+            }
+            
+            .error-illustration {
+                width: 140px;
+                height: 140px;
+                margin: 0 auto 1.5rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Nubes animadas -->
+    <div class="clouds">
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+    </div>
+    
     <div class="error-container">
         <div class="error-illustration"></div>
         <div class="error-code">404</div>
@@ -153,5 +260,12 @@
         <p class="error-message">Lo sentimos, la página que estás buscando no existe o ha sido movida. Por favor, verifica la URL o regresa a la página de inicio.</p>
         <a href="/" class="home-button">Volver al Inicio</a>
     </div>
+    
+    <script>
+        // Asegurarse de que las fuentes estén cargadas
+        document.fonts.ready.then(() => {
+            document.body.style.opacity = 1;
+        });
+    </script>
 </body>
 </html>
