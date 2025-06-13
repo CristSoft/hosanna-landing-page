@@ -1,4 +1,92 @@
 /* ======== FUENTES PERSONALIZADAS Y VARIABLES DE COLOR ======== */
+:root {
+    --icon-size: 3rem;
+    --download-link-gap: 1.5rem;
+}
+
+/* ======== ESTILOS PARA LOS ENLACES DE DESCARGA ======== */
+.download-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.download-link {
+    display: flex;
+    align-items: center;
+    gap: var(--download-link-gap);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.download-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.download-link i {
+    font-size: var(--icon-size);
+    min-width: calc(var(--icon-size) + 1rem);
+    text-align: center;
+    color: var(--color-blanco); /* Color morado para los íconos */
+}
+
+.download-link h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+.download-link p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    :root {
+        --icon-size: 2.5rem;
+        --download-link-gap: 1rem;
+    }
+    
+    .download-link {
+        padding: 1.2rem;
+    }
+    
+    .download-link h3 {
+        font-size: 1.1rem;
+    }
+    
+    .download-link p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --icon-size: 2rem;
+    }
+    
+    .download-link {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .download-link i {
+        margin-bottom: 0.5rem;
+    }
+}
 @font-face {
     font-family: 'Blastimo';
     /* src: url('assets/fonts/Blastimo.ttf') format('truetype'); */
@@ -450,7 +538,7 @@ ul {
 .modal-content {
     background: var(--color-morado-oscuro);
     padding: 2rem;
-    border-radius: 15px;
+    border-radius: 25px;
     width: 90%;
     max-width: 500px;
     position: relative;
