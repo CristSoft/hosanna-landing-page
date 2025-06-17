@@ -446,7 +446,7 @@ nav {
     color: var(--color-gris-claro);
     text-align: center;
     padding-top: 4rem;
-    padding-bottom: 0rem;
+    padding-bottom: 0.1rem;
     margin-bottom: -1rem;
     font-family: var(--font-body);
     font-size: 0.9rem;
