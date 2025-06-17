@@ -13,4 +13,18 @@ No es obligatorio, intento que sea lo más grats o barato posible.jeje
 
 Muchas gracias por los elogios sobre la página. jaja
 
+Texto corregido
 Espacio vacío, Resuelto.
+
+Con respecto a la separación entre Contacto y Colaboración
+Opino que es mejor así, 
+argumento:
+Al quedar el mídulo de los contactos sin texto, el bloque queda muy chico y no queda bien con el resto de la página.
+El bloque de colaborar queda sin visualizar y sin un link que lo referencie, puede quedar invisibilizado. de la forma actual, se ve inmediatamente debajo del contacto, lo que le da un poco más de visibilidad.
+
+Los links se abren en una pestaña aparte.
+
+Links de colaboración a mi nombre:
+
+Medios de pago: yo creo que puedo cambiarlo
+
