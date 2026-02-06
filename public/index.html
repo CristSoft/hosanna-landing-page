@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cancionero Hosanna</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=1.3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -14,8 +14,18 @@
     <header>
         <div><a href="#intro" class="logo" style="text-decoration: none; cursor: pointer;">Hosanna</a></div>
         <nav>
-            <a href="#colaborar" class="nav-btn">Contacto</a>
-            <button id="download-btn" class="nav-btn cta">Descargas</button>
+            <a href="#contacto" class="nav-btn" aria-label="Contacto">
+                <span class="nav-text">Contacto</span>
+                <i class="fas fa-envelope nav-icon"></i>
+            </a>
+            <a href="#colaborar" class="nav-btn" aria-label="Colaborar">
+                <span class="nav-text">Colaborar</span>
+                <i class="fas fa-hand-holding-heart nav-icon"></i>
+            </a>
+            <button id="download-btn" class="nav-btn cta" aria-label="Descargas">
+                <span class="nav-text">Descargas</span>
+                <i class="fas fa-download nav-icon"></i>
+            </button>
         </nav>
     </header>
 
@@ -30,7 +40,7 @@
             <!-- ======== SECCIÓN 1: INTRO ======== -->
             <section id="intro">
                 <div class="content-wrapper">
-                    <!-- <h3 class="uppertitle">Cancionero</h3>           -->
+                    <h3 class="uppertitle">Cancionero</h3>
                     <h1 class="title-main">Hosanna</h1>
                     <div class="comet"></div>
                     <h2 class="subtitle">¿Qué es y para qué existe?</h2>
@@ -42,6 +52,11 @@
                         animar a los jóvenes a consagrar sus dones musicales al servicio de Dios, siguiendo los
                         principios inspirados de la música.
                     </p>
+                    <div class="scroll-indicator">
+                        <a href="#historia" aria-label="Ir a la siguiente sección">
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                    </div>
                 </div>
             </section>    
 
@@ -112,8 +127,8 @@
                 </div>
             </section> -->
 
-            <!-- ======== SECCIÓN 5: COLABORAR ======== -->
-            <section id="colaborar">
+            <!-- ======== SECCIÓN 5: CONTACTO ======== -->
+            <section id="contacto">
                 <div class="content-wrapper texto">
                     <h2 class="subtitle">Contacto</h2>
                     <p>
@@ -150,6 +165,12 @@
                             <span class="contact-label">Instagram</span>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- ======== SECCIÓN 6: COLABORAR ======== -->
+            <section id="colaborar">
+                <div class="content-wrapper texto">
                     <h2 class="subtitle">¿Te gustaría colaborar con el proyecto?</h2>
                     <p>
                         Para hacer realidad el deseo y la necesidad de lograr el desarrollo de la aplicación móvil, se
@@ -260,6 +281,7 @@
                     <!-- FIN: NUEVA SECCIÓN DE DONACIÓN -->
                     <p class="final-words">Dios te bendiga, y gracias por tu interés en conocer más sobre el ministerio.
                     </p>
+                    <h3 class="uppertitle">Cancionero</h3>
                     <h1><a href="#intro" class="title-main final-logo"
                             style="text-decoration: none; cursor: pointer;">Hosanna</a></h1>
                 </div>
@@ -267,7 +289,7 @@
 
             <!-- copyright -->
             <div class="footer-simple">
-                <p>&copy; 2025 Cristsoft</p>
+                <p>&copy; 2026 Cristsoft | <a href="politicas_de_privacidad.html" class="footer-link">Políticas de Privacidad</a> | <a href="eliminacion.html" class="footer-link">Eliminación de Datos</a></p>
             </div>
         </main>
     </div>
@@ -285,10 +307,14 @@
                     <h3>Descargar Cancionero (PDF)</h3>
                     <!-- <p>La última versión de nuestro cancionero completo.</p> -->
                 </a>
-                <a href="https://storage.googleapis.com/apphosanna/hosanna.apk" class="download-link">
+                <!-- <a href="https://storage.googleapis.com/apphosanna/hosanna.apk" class="download-link">
                     <i class="fab fa-android"></i>
                     <h3>Descargar la Aplicación para Android (APK)</h3>
-                    <!-- <p>Accede a todos los recursos de Hosanna desde tu móvil.</p> -->
+                </a> -->
+                <a href="https://cancionerohosanna.web.app" class="download-link" target="_blank">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Instalar Aplicación Web (PWA)</h3>
+                    <!-- <p>Accede a todos los recursos de Hosanna desde tu móvil sin descargar nada.</p> -->
                 </a>
             </div>
         </div>

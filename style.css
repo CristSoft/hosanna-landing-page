@@ -524,3 +524,28 @@ ul {
     color: var(--color-morado-oscuro);
     margin-top: 0.25rem;
 }
+
+/* ======== FOOTER SIMPLE ======== */
+.footer-simple {
+    text-align: center;
+    padding: 1.5rem 2rem;
+    background: rgba(25, 22, 38, 0.8);
+    border-top: 1px solid rgba(103, 80, 164, 0.3);
+}
+
+.footer-simple p {
+    font-size: 0.9rem;
+    color: var(--color-gris-claro);
+    margin: 0;
+}
+
+.footer-link {
+    color: var(--color-gris-claro);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--color-blanco);
+    text-decoration: underline;
+}
