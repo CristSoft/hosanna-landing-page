@@ -408,6 +408,18 @@ nav {
   z-index: 5;
 }
 
+/* ======== ESTILOS PARA EL LOGO FINAL (Cancionero + Hosanna) ======== */
+.final-words + .uppertitle {
+  margin: 2rem 0 -0.5rem 0 !important;
+  font-size: clamp(0.5rem, 1vw, 0.75rem) !important;
+  display: block;
+  text-align: center;
+}
+
+.final-logo {
+  display: block;
+}
+
 /* ======== ESTILOS PARA LA NUEVA SECCIÓN DE DONACIÓN ======== */
 .donation-wrapper {
   margin: 2rem 0;

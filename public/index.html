@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cancionero Hosanna</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="styles.css?v=1.3">
+    <link rel="stylesheet" href="styles.css?v=1.4">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -311,6 +311,12 @@
                     <i class="fab fa-android"></i>
                     <h3>Descargar la Aplicación para Android (APK)</h3>
                 </a> -->
+                <a href="https://play.google.com/store/apps/details?id=com.cristsoft.hosanna" class="download-link" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="40" height="40" style="fill: currentColor;">
+                        <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
+                    </svg>
+                    <h3>Descargar desde Google Play</h3>
+                </a>
                 <a href="https://cancionerohosanna.web.app" class="download-link" target="_blank">
                     <i class="fas fa-mobile-alt"></i>
                     <h3>Instalar Aplicación Web (PWA)</h3>
@@ -351,7 +357,7 @@
                 starContainer.innerHTML = '';
                 cloudContainer.innerHTML = '';
 
-                // CAMBIO: Aumentamos el número de estrellas para una mejor densidad en toda la página.
+                // Aumentamos el número de estrellas para una mejor densidad en toda la página.
                 const NUM_STARS = 500;
                 const NUM_CLOUDS = 25;
 
@@ -363,7 +369,7 @@
                     // La posición horizontal se mantiene.
                     star.style.left = `${Math.random() * 100}%`;
 
-                    // --- CAMBIO: POSICIÓN VERTICAL DE LAS ESTRELLAS ---
+                    // --- POSICIÓN VERTICAL DE LAS ESTRELLAS ---
                     // Usamos la altura total de la página en píxeles, igual que con las nubes.
                     const topPosition = Math.random() * totalPageHeight;
                     star.style.top = `${topPosition}px`;
@@ -412,7 +418,6 @@
 
                 const sectionObserver = new IntersectionObserver((entries, observer) => {
                     entries.forEach(entry => {
-                        // --- ESTA ES LA NUEVA LÓGICA ---
                         // classList.toggle(nombreClase, condiciónBooleana)
                         // Si 'entry.isIntersecting' es true, AÑADE la clase.
                         // Si 'entry.isIntersecting' es false, QUITA la clase.
@@ -422,7 +427,7 @@
 
                 sections.forEach(section => sectionObserver.observe(section));
             }
-            // --- Lógica para el modal de descargas (sin cambios) ---
+            // --- Lógica para el modal de descargas
             function setupModal() {
                 const downloadButton = document.getElementById('download-btn');
                 const modalContainer = document.getElementById('modal-container');
